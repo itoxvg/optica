@@ -16,7 +16,7 @@ class ProductosController < ApplicationController
   end
 
   def create
-    @producto = Producto.new(producto_params)
+    @producto = current_usuario.productos.build(producto_params)
 
     if @producto.save
       redirect_to producto_path(@producto), notice: 'El producto fue creado correctamente'

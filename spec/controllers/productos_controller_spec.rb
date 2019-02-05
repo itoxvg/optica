@@ -4,7 +4,7 @@ RSpec.describe ProductosController, type: :controller do
 
   let(:vendedor) { create :usuario, :vendedor }
 
-  let(:valid_attributes) { attributes_for :producto }
+  let(:valid_attributes) { attributes_for :producto, usuario: vendedor }
   let(:invalid_attributes) { attributes_for :producto, nombre: nil }
 
   before { sign_in vendedor }
