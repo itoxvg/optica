@@ -1,5 +1,5 @@
 class ProductosController < ApplicationController
-  before_action :set_producto, only: [:show, :edit]
+  before_action :set_producto, only: [:show, :edit, :update]
 
   def index
     @productos = Producto.all
@@ -22,6 +22,14 @@ class ProductosController < ApplicationController
       redirect_to producto_path(@producto), notice: 'El producto fue creado correctamente'
     else
       render :new
+    end
+  end
+
+  def update
+    if @producto.update(producto_params)
+      redirect_to @producto, notice: 'El producto fue actualizado correctamente'
+    else
+      render 'edit'
     end
   end
 

@@ -8,6 +8,12 @@
   </head>
 
   <body>
+    <nav>
+      <%= link_to "cerrar sesion", destroy_usuario_session_path %>
+    </nav>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <%= yield %>
   </body>
 </html>

@@ -2,8 +2,12 @@ require 'rails_helper'
 
 RSpec.describe ProductosController, type: :controller do
 
+  let(:vendedor) { create :usuario, :vendedor }
+
   let(:valid_attributes) { attributes_for :producto }
   let(:invalid_attributes) { attributes_for :producto, nombre: nil }
+
+  before { sign_in vendedor }
 
   describe "GET #index" do
     it "returns a success response" do
@@ -57,5 +61,34 @@ RSpec.describe ProductosController, type: :controller do
       end
     end # context with invalid params
   end # describe "GET #new"
+
+  describe "POST #update" do
+    context "with valid params" do
+      let(:new_attributes) do
+        { nombre: 'nuevo' }
+      end
+
+      it "updates the requested producto" do
+        producto = Producto.create! valid_attributes
+        put :update, params: { id: producto.to_param, producto: new_attributes }
+        producto.reload
+        expect(producto.nombre).to eq 'nuevo'
+      end
+
+      it "redirects to the producto" do
+        producto = Producto.create! valid_attributes
+        put :update, params: { id: producto.to_param, producto: new_attributes }
+        expect(response).to redirect_to producto
+      end
+    end # context with valid params
+
+    context "with invalid params" do
+      it "displays the 'edit' template" do
+        producto = Producto.create! valid_attributes
+        put :update, params: { id: producto.to_param, producto: invalid_attributes }
+        expect(response).to be_successful
+      end
+    end # context with invalid params
+  end # describe "POST #update"
 
 end
