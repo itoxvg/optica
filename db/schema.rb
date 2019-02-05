@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2019_02_05_011220) do
     t.money "precio_venta", scale: 2, default: "0.0"
     t.money "precio_compra", scale: 2, default: "0.0"
     t.float "existencia", default: 1.0
+    t.string "tipo"
+    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "usuario_id"

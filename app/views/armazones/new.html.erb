@@ -1,0 +1,6 @@
+<h1>crear armazon</h1>
+
+<%= render partial: 'productos/form',
+  locals: { producto: @armazon, tipos: Armazon::TIPOS } %>
+
+<%= link_to 'regresar', armazones_path %>

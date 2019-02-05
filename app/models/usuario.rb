@@ -1,7 +1,9 @@
 class Usuario < ApplicationRecord
   enum cargo: [:cliente, :vendedor, :admin]
 
-  has_many :productos
+  has_many :armazones
+  has_many :lentes
+  has_many :micas
 
   validates :nombre, presence: true
   validates :nombre, uniqueness: { case_sensitive: false }

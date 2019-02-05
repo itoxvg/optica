@@ -1,0 +1,7 @@
+<h1>editar <%= @lente.nombre %></h1>
+
+<%= render partial: 'productos/form',
+  locals: { producto: @lente, tipos: Lente::TIPOS } %>
+
+<%= link_to 'detalle', @lente %> |
+<%= link_to 'regresar', lentes_path %>

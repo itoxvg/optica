@@ -1,0 +1,6 @@
+<h1>detalle del lente <%= @lente.type %> <%= @lente.nombre %></h1>
+
+<%= render partial: 'productos/producto', locals: { producto: @lente } %>
+
+<%= link_to 'editar', edit_lente_path(@lente) %> |
+<%= link_to 'regresar', lentes_path %>

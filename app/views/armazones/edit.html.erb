@@ -1,0 +1,7 @@
+<h1>editar <%= @armazon.nombre %></h1>
+
+<%= render partial: 'productos/form',
+  locals: { producto: @armazon, tipos: Armazon::TIPOS } %>
+
+<%= link_to 'detalle', @armazon %> |
+<%= link_to 'regresar', armazones_path %>

@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :usuarios
 
-  resources :productos, except: [:destroy]
+  resources :armazones
+  resources :lentes
+  resources :micas
   resources :usuarios, except: [:destroy]
 
   root 'homes#index'
