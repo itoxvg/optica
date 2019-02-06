@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe LentesController, type: :controller do
 
-  let(:vendedor) { create :usuario, :vendedor }
+  let(:vendedor) { create :vendedor }
 
   let(:valid_attributes) do
-    attributes_for :producto, :lente, usuario: vendedor
+    attributes_for :lente, usuario: vendedor
   end
-  let(:invalid_attributes) { attributes_for :producto, nombre: nil }
+  let(:invalid_attributes) { attributes_for :lente, nombre: nil }
 
   before { sign_in vendedor }
 

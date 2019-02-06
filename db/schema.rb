@@ -10,14 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_05_011220) do
+ActiveRecord::Schema.define(version: 2019_02_06_142424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "clientes", force: :cascade do |t|
+    t.string "nombre", default: "", null: false
+    t.string "telefono"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "productos", force: :cascade do |t|
-    t.string "nombre"
-    t.string "codigo"
+    t.string "nombre", default: "", null: false
+    t.string "codigo", default: "", null: false
     t.text "descripcion"
     t.money "precio_venta", scale: 2, default: "0.0"
     t.money "precio_compra", scale: 2, default: "0.0"
@@ -31,9 +38,11 @@ ActiveRecord::Schema.define(version: 2019_02_05_011220) do
   end
 
   create_table "usuarios", force: :cascade do |t|
-    t.string "nombre"
-    t.string "telefono"
+    t.string "nombre", default: "", null: false
     t.integer "cargo", default: 0, null: false
+    t.boolean "activo", default: true, null: false
+    t.string "telefono"
+    t.string "type"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

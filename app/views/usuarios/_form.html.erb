@@ -1,9 +1,11 @@
-<%= form_with model: @usuario do |f| %>
+<%= form_with model: usuario do |f| %>
   <%= f.text_field :nombre %>
   <br/>
   <%= f.text_field :telefono %>
   <br/>
   <%= f.text_field :email %>
+  <br/>
+  <%= f.check_box :activo %> Activo
   <br/>
   <%= f.password_field :password %>
   <br/>

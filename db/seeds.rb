@@ -6,23 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-admin = Usuario.create! nombre: 'juan', telefono: '951 123 45 67',
-  email: 'admin@gmail.com', password: '123123123', cargo: 'admin'
+admin = Admin.create! nombre: 'juan', telefono: '951 123 45 67',
+  email: 'admin@gmail.com', password: '123123123'
 
-Usuario.create! nombre: 'vendedor', telefono: '951 123 45 67',
-  email: 'vendedor@gmail.com', password: '123123123', cargo: 'vendedor'
-
-Usuario.create! nombre: 'cliente', telefono: '951 123 45 67',
-  email: 'cliente@gmail.com', password: '123123123', cargo: 'cliente'
+Vendedor.create! nombre: 'vendedor', telefono: '951 123 45 67',
+  email: 'vendedor@gmail.com', password: '123123123'
 
 50.times do |n|
   tipo = ['ranurado', 'armazón completo', 'sobrepuesto'].sample
   precio_venta = rand (1 ..900)
   precio_compra = rand (1 ..900)
 
-  Producto.create! nombre: "Armazon#{n}", codigo: "AZ#{n}",
+  Armazon.create! nombre: "Armazon#{n}", codigo: "AZ#{n}",
     precio_venta: precio_venta, precio_compra: precio_compra,
-    tipo: tipo, type: 'Armazon', usuario: admin
+    tipo: tipo, usuario: admin
 end
 
 50.times do |n|
@@ -30,9 +27,9 @@ end
   precio_venta = rand (1 ..900)
   precio_compra = rand (1 ..900)
 
-  Producto.create! nombre: "Lente#{n}", codigo: "LT#{n}",
+  Lente.create! nombre: "Lente#{n}", codigo: "LT#{n}",
     precio_venta: precio_venta, precio_compra: precio_compra,
-    tipo: tipo, type: 'Lente', usuario: admin
+    tipo: tipo, usuario: admin
 end
 
 50.times do |n|
@@ -40,8 +37,8 @@ end
   precio_venta = rand (1 ..900)
   precio_compra = rand (1 ..900)
 
-  Producto.create! nombre: "Mica#{n}", codigo: "MC#{n}",
+  Mica.create! nombre: "Mica#{n}", codigo: "MC#{n}",
     precio_venta: precio_venta, precio_compra: precio_compra,
-    tipo: tipo, type: 'Mica', usuario: admin
+    tipo: tipo, usuario: admin
 end
 

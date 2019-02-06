@@ -1,0 +1,6 @@
+<h1>detalle del vendedor <%= @vendedor.nombre %></h1>
+
+<%= render partial: 'usuarios/usuario', locals: { usuario: @vendedor } %>
+
+<%= link_to 'editar', [:edit, @vendedor] %> |
+<%= link_to 'regresar', vendedores_path %>

@@ -1,8 +1,8 @@
 class CreateProductos < ActiveRecord::Migration[5.2]
   def change
     create_table :productos do |t|
-      t.string :nombre
-      t.string :codigo
+      t.string :nombre, default: "", null: false
+      t.string :codigo, default: "", null: false
       t.text :descripcion
       t.money :precio_venta, default: 0
       t.money :precio_compra, default: 0

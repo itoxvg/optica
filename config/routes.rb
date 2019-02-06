@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :armazones
   resources :lentes
   resources :micas
-  resources :usuarios, except: [:destroy]
+  resources :vendedores, except: [:destroy]
 
   root 'homes#index'
 end

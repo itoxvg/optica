@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe MicasController, type: :controller do
 
-  let(:vendedor) { create :usuario, :vendedor }
+  let(:vendedor) { create :vendedor }
 
   let(:valid_attributes) do
-    attributes_for :producto, :mica, usuario: vendedor
+    attributes_for :mica, usuario: vendedor
   end
-  let(:invalid_attributes) { attributes_for :producto, nombre: nil }
+  let(:invalid_attributes) { attributes_for :mica, nombre: nil }
 
   before { sign_in vendedor }
 

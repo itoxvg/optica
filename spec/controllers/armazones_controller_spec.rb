@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe ArmazonesController, type: :controller do
 
-  let(:vendedor) { create :usuario, :vendedor }
+  let(:vendedor) { create :vendedor }
 
   let(:valid_attributes) do
-    attributes_for :producto, :armazon, usuario: vendedor
+    attributes_for :armazon, usuario: vendedor
   end
-  let(:invalid_attributes) { attributes_for :producto, nombre: nil }
+  let(:invalid_attributes) { attributes_for :armazon, nombre: nil }
 
   before { sign_in vendedor }
 

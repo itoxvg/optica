@@ -1,5 +1,5 @@
 class Usuario < ApplicationRecord
-  enum cargo: [:cliente, :vendedor, :admin]
+  enum cargo: [:vendedor, :admin]
 
   has_many :armazones
   has_many :lentes
@@ -7,6 +7,14 @@ class Usuario < ApplicationRecord
 
   validates :nombre, presence: true
   validates :nombre, uniqueness: { case_sensitive: false }
+
+  def active_for_authentication?
+    super && activo?
+  end
+
+  def inactive_message
+    activo? ? super : :account_inactive
+  end
 
   devise :database_authenticatable, :recoverable, :rememberable,
     :validatable, :trackable
