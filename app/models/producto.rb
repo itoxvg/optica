@@ -1,5 +1,7 @@
 class Producto < ApplicationRecord
   belongs_to :usuario
+  has_many :vendidos
+  has_many :ventas, through: :vendidos
 
   validates :nombre, :codigo, :existencia, :precio_venta,
     :usuario, :tipo, :type, presence: true

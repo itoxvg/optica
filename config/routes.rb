@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :lentes
   resources :micas
   resources :vendedores, except: [:destroy]
+  resources :ventas
 
   root 'homes#index'
 end

@@ -6,7 +6,7 @@ class CreateProductos < ActiveRecord::Migration[5.2]
       t.text :descripcion
       t.money :precio_venta, default: 0
       t.money :precio_compra, default: 0
-      t.float :existencia, default: 1
+      t.integer :existencia, default: 1
       t.string :tipo
       t.string :type
 

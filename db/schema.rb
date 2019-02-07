@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_06_142424) do
+ActiveRecord::Schema.define(version: 2019_02_07_010755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_02_06_142424) do
     t.text "descripcion"
     t.money "precio_venta", scale: 2, default: "0.0"
     t.money "precio_compra", scale: 2, default: "0.0"
-    t.float "existencia", default: 1.0
+    t.integer "existencia", default: 1
     t.string "tipo"
     t.string "type"
     t.datetime "created_at", null: false
@@ -59,5 +59,39 @@ ActiveRecord::Schema.define(version: 2019_02_06_142424) do
     t.index ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true
   end
 
+  create_table "vendidos", force: :cascade do |t|
+    t.bigint "venta_id"
+    t.bigint "producto_id"
+    t.integer "cantidad", default: 1, null: false
+    t.money "precio", scale: 2, default: "0.0", null: false
+    t.money "descuento", scale: 2, default: "0.0", null: false
+    t.money "subtotal", scale: 2, default: "0.0", null: false
+    t.text "observaciones"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["producto_id"], name: "index_vendidos_on_producto_id"
+    t.index ["venta_id"], name: "index_vendidos_on_venta_id"
+  end
+
+  create_table "ventas", force: :cascade do |t|
+    t.string "folio"
+    t.text "observaciones"
+    t.boolean "saldada", default: true
+    t.datetime "fecha_entrega", default: -> { "now()" }
+    t.money "descuento", scale: 2, default: "0.0"
+    t.money "total", scale: 2, default: "0.0"
+    t.bigint "cliente_id"
+    t.bigint "usuario_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cliente_id"], name: "index_ventas_on_cliente_id"
+    t.index ["folio"], name: "index_ventas_on_folio", unique: true
+    t.index ["usuario_id"], name: "index_ventas_on_usuario_id"
+  end
+
   add_foreign_key "productos", "usuarios"
+  add_foreign_key "vendidos", "productos"
+  add_foreign_key "vendidos", "ventas"
+  add_foreign_key "ventas", "clientes"
+  add_foreign_key "ventas", "usuarios"
 end
