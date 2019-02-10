@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_010755) do
   end
 
   create_table "ventas", force: :cascade do |t|
-    t.string "folio"
+    t.string "codigo"
     t.text "observaciones"
     t.boolean "saldada", default: true
     t.datetime "fecha_entrega", default: -> { "now()" }
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_010755) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["cliente_id"], name: "index_ventas_on_cliente_id"
-    t.index ["folio"], name: "index_ventas_on_folio", unique: true
+    t.index ["codigo"], name: "index_ventas_on_codigo", unique: true
     t.index ["usuario_id"], name: "index_ventas_on_usuario_id"
   end
 

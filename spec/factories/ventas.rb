@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :venta do
-    sequence(:folio) { |n| "#{n}" }
+    codigo { nil }
     observaciones { "MyText" }
     saldada { true }
     fecha_entrega { "2019-02-06 18:04:16" }

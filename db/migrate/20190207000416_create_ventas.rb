@@ -1,7 +1,7 @@
 class CreateVentas < ActiveRecord::Migration[5.2]
   def change
     create_table :ventas do |t|
-      t.string :folio
+      t.string :codigo
       t.text :observaciones
       t.boolean :saldada, default: true
       t.timestamp :fecha_entrega, default: -> { 'NOW()' }
@@ -12,6 +12,6 @@ class CreateVentas < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
-    add_index :ventas, :folio, unique: true
+    add_index :ventas, :codigo, unique: true
   end
 end

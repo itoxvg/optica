@@ -22,7 +22,6 @@ RSpec.describe VentasController, type: :controller do
 
   let(:valid_attributes) do
     {
-      folio: '1',
       observaciones: 'observaciones',
       saldada: true,
       fecha_entrega: Time.now,
@@ -34,7 +33,7 @@ RSpec.describe VentasController, type: :controller do
     }
   end
 
-  let(:invalid_attributes) { attributes_for :venta, folio: nil }
+  let(:invalid_attributes) { attributes_for :venta, total: nil }
 
   before { sign_in vendedor }
 
@@ -107,7 +106,6 @@ RSpec.describe VentasController, type: :controller do
     context "with valid params" do
       let(:new_attributes) do
         {
-          folio: '1',
           observaciones: 'nuevo',
           saldada: true,
           fecha_entrega: Time.now,

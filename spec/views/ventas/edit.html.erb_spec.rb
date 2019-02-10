@@ -7,7 +7,6 @@ RSpec.describe "ventas/edit", type: :view do
 
   before(:each) do
     @venta = assign(:venta, Venta.create!(
-      folio: "Folio1",
       observaciones: "MyText",
       saldada: false,
       descuento: 0,
@@ -21,8 +20,6 @@ RSpec.describe "ventas/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", venta_path(@venta), "post" do
-
-      assert_select "input[name=?]", "venta[folio]"
 
       assert_select "textarea[name=?]", "venta[observaciones]"
 

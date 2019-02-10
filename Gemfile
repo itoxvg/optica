@@ -10,6 +10,7 @@ gem 'webpacker'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise'
+gem 'barby'
 
 # gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'

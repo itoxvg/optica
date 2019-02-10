@@ -3,7 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Folio</th>
+      <th>Codigo</th>
       <th>Observaciones</th>
       <th>Saldada</th>
       <th>Fecha entrega</th>
@@ -18,7 +18,7 @@
   <tbody>
     <% @ventas.each do |venta| %>
       <tr>
-        <td><%= venta.folio %></td>
+        <td><%= venta.codigo %></td>
         <td><%= venta.observaciones %></td>
         <td><%= venta.saldada %></td>
         <td><%= venta.fecha_entrega %></td>
