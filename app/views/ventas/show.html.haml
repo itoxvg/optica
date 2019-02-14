@@ -1,0 +1,34 @@
+.block
+  .block-header.block-header-default
+    %h3.block-title
+      Detalles de la venta #{@venta}
+    .block-options
+      .block-options-item
+  .block-content
+    %p
+      %strong Codigo:
+      = @venta.codigo
+    %p
+      %strong Observaciones:
+      = @venta.observaciones
+    %p
+      %strong Saldada:
+      = @venta.saldada
+    %p
+      %strong Fecha entrega:
+      = @venta.fecha_entrega
+    %p
+      %strong Descuento:
+      = @venta.descuento
+    %p
+      %strong Total:
+      = @venta.total
+    %p
+      %strong Cliente:
+      = @venta.cliente
+    %p
+      %strong Usuario:
+      = @venta.usuario
+    = link_to [:edit, @venta], class: 'btn btn-alt-warning' do
+      %i.si.si-pencil
+      editar

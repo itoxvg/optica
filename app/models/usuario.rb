@@ -17,6 +17,10 @@ class Usuario < ApplicationRecord
     activo? ? super : :account_inactive
   end
 
+  def to_s
+    nombre.titleize
+  end
+
   devise :database_authenticatable, :recoverable, :rememberable,
     :validatable, :trackable
 end

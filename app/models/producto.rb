@@ -7,4 +7,8 @@ class Producto < ApplicationRecord
     :usuario, :tipo, :type, presence: true
   validates :precio_venta, numericality: { greater_than: 0 }
   validates :codigo, uniqueness: { case_sensitive: false }
+
+  def to_s
+    "#{codigo} #{nombre}"
+  end
 end

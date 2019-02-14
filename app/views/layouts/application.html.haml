@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+    %title Optica
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'application'
+    = javascript_pack_tag 'application'
+  %body
+    #page-container.sidebar-o.sidebar-inverse.side-scroll.page-header-fixed.side-trans-enabled
+      = render 'layouts/partials/side_overlay'
+      = render 'layouts/partials/sidebar'
+      = render 'layouts/partials/navbar'
+      / Main Container
+      %main#main-container{:style => "min-height: 783px;"}
+        .content
+          = yield
+      / END Main Container
+      = render 'layouts/partials/footer'

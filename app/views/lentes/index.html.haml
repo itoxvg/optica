@@ -1,0 +1,10 @@
+.block
+  .block-header.block-header-default
+    %h3.block-title Lista de Lentes
+    .block-options
+      .block-options-item
+        = link_to [:new, :lente], class: 'btn btn-alt-secondary' do
+          %i.si.si-plus
+          Registrar Lente
+  .block-content
+    = render 'productos/table', productos: @lentes

@@ -1,0 +1,37 @@
+.block
+  .block-header.block-header-default
+    %h3.block-title Historial de ventas
+    .block-options
+      .block-options-item
+        = link_to [:new, :venta], class: 'btn btn-alt-secondary' do
+          %i.si.si-plus
+          Registrar venta
+  .block-content
+    .table-responsive
+      %table.table.table-striped.table-vcenter
+        %thead
+          %tr
+            %th código
+            %th fecha entrega
+            %th descuento
+            %th total
+            %th cliente
+            %th vendedor
+            %th.text-center{:style => "width: 100px;"} Acciones
+        %tbody
+          - @ventas.each do |venta|
+            %tr
+              %td= venta.codigo
+              %td= venta.fecha_entrega
+              %td= number_to_currency venta.descuento
+              %td= number_to_currency venta.total
+              %td= venta.cliente
+              %td= venta.usuario
+              %td
+                .btn-group
+                  = link_to venta, class: 'btn btn-alt-info' do
+                    %i.si.si-eye
+                    detalles
+                  = link_to [:edit, venta], class: 'btn btn-alt-warning' do
+                    %i.si.si-pencil
+                    editar

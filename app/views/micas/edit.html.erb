@@ -1,7 +1,0 @@
-<h1>editar <%= @mica.nombre %></h1>
-
-<%= render partial: 'productos/form',
-  locals: { producto: @mica, tipos: Mica::TIPOS } %>
-
-<%= link_to 'detalle', @mica %> |
-<%= link_to 'regresar', micas_path %>

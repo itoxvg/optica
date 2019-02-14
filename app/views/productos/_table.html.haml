@@ -1,0 +1,26 @@
+.table-responsive
+  %table.table.table-striped.table-vcenter
+    %thead
+      %tr
+        %th #
+        %th código
+        %th nombre
+        %th existencias
+        %th tipo
+        %th.text-center{:style => "width: 100px;"} Acciones
+    %tbody
+      - productos.each do |producto|
+        %tr
+          %td= producto.id
+          %td= producto.codigo
+          %td= producto.nombre
+          %td= producto.existencia
+          %td= producto.tipo
+          %td
+            .btn-group
+              = link_to producto, class: 'btn btn-alt-info' do
+                %i.si.si-eye
+                detalles
+              = link_to [:edit, producto], class: 'btn btn-alt-warning' do
+                %i.si.si-pencil
+                editar

@@ -17,4 +17,8 @@ class Venta < ApplicationRecord
   def asignar_siguiente_codigo
     Codigo::Siguiente.new.asignar(self)
   end
+
+  def to_s
+    codigo
+  end
 end

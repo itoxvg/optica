@@ -9,7 +9,7 @@ class VentasController < ApplicationController
   end
 
   def new
-    @venta = Venta.new
+    @venta = Venta.new cliente: Cliente.new
   end
 
   def edit
