@@ -1,0 +1,18 @@
+= simple_form_for producto do |f|
+  .row
+    .col-4
+      = f.input :nombre
+    .col-4
+      = f.input :codigo
+    .col-4
+      = f.input :tipo, collection: tipos
+    .col-4
+      = f.input :precio_compra, as: :float
+    .col-4
+      = f.input :precio_venta, as: :float
+    .col-4
+      = f.input :existencia, as: :integer
+    .col-12
+      = f.input :descripcion, as: :text
+    .col-12
+      = f.submit class: 'btn btn-alt-primary'

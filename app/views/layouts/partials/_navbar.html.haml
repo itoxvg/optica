@@ -1,0 +1,61 @@
+%body
+  %p
+    Header --&gt;
+    %header#page-header
+      / Header Content
+      .content-header
+        / Left Section
+        .content-header-section
+          / Toggle Sidebar
+          / Layout API, functionality initialized in Codebase() -> uiApiLayout()
+          %button.btn.btn-circle.btn-dual-secondary{"data-action" => "sidebar_toggle", "data-toggle" => "layout", :type => "button"}
+            %i.fa.fa-navicon
+          / END Toggle Sidebar
+        / END Left Section
+        / Right Section
+        .content-header-section
+          / User Dropdown
+          .btn-group{:role => "group"}
+            %button#page-header-user-dropdown.btn.btn-rounded.btn-dual-secondary{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+              %i.fa.fa-user.d-sm-none
+              %span.d-none.d-sm-inline-block
+                = current_usuario
+              %i.fa.fa-angle-down.ml-5
+            .dropdown-menu.dropdown-menu-right.min-width-200{"aria-labelledby" => "page-header-user-dropdown"}
+              %h5.h6.text-center.py-10.mb-5.border-b.text-uppercase User
+              %a.dropdown-item{:href => "be_pages_generic_profile.html"}
+                %i.si.si-user.mr-5
+                Profile
+              %a.dropdown-item.d-flex.align-items-center.justify-content-between{:href => "be_pages_generic_inbox.html"}
+                %span
+                  %i.si.si-envelope-open.mr-5
+                  Inbox
+                %span.badge.badge-primary 3
+              %a.dropdown-item{:href => "be_pages_generic_invoice.html"}
+                %i.si.si-note.mr-5
+                Invoices
+              .dropdown-divider
+              %a.dropdown-item{"data-action" => "side_overlay_toggle", "data-toggle" => "layout", :href => "javascript:void(0)"}
+                %i.si.si-wrench.mr-5
+                Settings
+              .dropdown-divider
+              %a.dropdown-item{:href => "op_auth_signin.html"}
+                %i.si.si-logout.mr-5
+                Sign Out
+          / END User Dropdown
+          / Toggle Side Overlay
+          / Layout API, functionality initialized in Codebase() -> uiApiLayout()
+          /
+            <button type="button" class="btn btn-rounded btn-dual-secondary" data-toggle="layout" data-action="side_overlay_toggle">
+            <i class="fa fa-tasks"></i>
+            <span class="badge badge-pill badge-success ml-5">6</span>
+            </button>
+          / END Toggle Side Overlay
+        / END Right Section
+      / END Header Content
+      / Header Loader
+      #page-header-loader.overlay-header.bg-primary
+        .content-header.content-header-fullrow.text-center
+          .content-header-item
+            %i.fa.fa-sun-o.fa-spin.text-white
+      / END Header Loader

@@ -1,3 +1,11 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  devise_for :usuarios
+
+  resources :armazones
+  resources :lentes
+  resources :micas
+  resources :vendedores, except: [:destroy]
+  resources :ventas
+
+  root 'homes#index'
 end

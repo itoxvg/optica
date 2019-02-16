@@ -1,0 +1,27 @@
+%p
+  %strong Código:
+  = producto.codigo
+%p
+  %strong Nombre:
+  = producto.nombre
+%p
+  %strong Descripción:
+  = producto.descripcion
+%p
+  %strong Precio de venta:
+  = producto.precio_venta
+%p
+  %strong Precio de compra:
+  = producto.precio_compra
+%p
+  %strong Existencia:
+  = producto.existencia
+%p
+  %strong Tipo de producto:
+  = producto.tipo
+%p
+  %strong Lo registro:
+  = producto.usuario
+= link_to [:edit, producto], class: 'btn btn-alt-warning' do
+  %i.si.si-pencil
+  editar

@@ -1,0 +1,8 @@
+.block
+  .block-header.block-header-default
+    %h3.block-title
+      Modificar #{@lente}
+    .block-options
+      .block-options-item
+  .block-content
+    = render 'productos/form', producto: @lente, tipos: Lente::TIPOS

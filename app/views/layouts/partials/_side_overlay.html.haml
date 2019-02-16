@@ -1,0 +1,87 @@
+/ Side Overlay
+%aside#side-overlay
+  / Side Overlay Scroll Container
+  #side-overlay-scroll
+    / Side Header
+    .content-header.content-header-fullrow.bg-primary-dark
+      .content-header-section.align-parent
+        / Close Side Overlay
+        / Layout API, functionality initialized in Codebase() -> uiApiLayout()
+        %button.btn.btn-circle.btn-dual-secondary.align-v-r{"data-action" => "side_overlay_close", "data-toggle" => "layout", :type => "button"}
+          %i.fa.fa-times.text-danger
+        / END Close Side Overlay
+        / User Info
+        .content-header-item
+          %a.img-link.mr-5{:href => "javascript:void(0)"}
+            %img.img-avatar.img-avatar32{:alt => "", :src => "assets/media/avatars/avatar12.jpg"}/
+          %a.align-middle.link-effect.text-white-op.font-w600{:href => "javascript:void(0)"} Admin
+        / END User Info
+    / END Side Header
+    / Side Content
+    .content-side
+      / Mini Stats
+      .block.pull-t.pull-r-l
+        .block-content.block-content-full.block-content-sm.bg-primary
+          .row.text-center
+            .col-4
+              .font-size-sm.font-w600.text-uppercase.text-white-op Sales
+              .font-size-h4.text-white 985
+            .col-4
+              .font-size-sm.font-w600.text-uppercase.text-white-op Tickets
+              .font-size-h4.text-white 251
+            .col-4
+              .font-size-sm.font-w600.text-uppercase.text-white-op Projects
+              .font-size-h4.text-white 39
+      / END Mini Stats
+      / Notifications
+      .block.pull-r-l
+        .block-header.bg-body-light
+          %h3.block-title Notifications
+          .block-options
+            %button.btn-block-option{"data-action" => "state_toggle", "data-action-mode" => "demo", "data-toggle" => "block-option", :type => "button"}
+              %i.si.si-refresh
+            %button.btn-block-option{"data-action" => "content_toggle", "data-toggle" => "block-option", :type => "button"}
+        .block-content
+          %ul.list.list-activity
+            %li
+              %i.si.si-wallet.text-success
+              .font-w600 +$29 New sale
+              %div
+                %a{:href => "javascript:void(0)"} Admin Template
+              .font-size-xs.text-muted 5 min ago
+            %li
+              %i.si.si-close.text-danger
+              .font-w600 Project removed
+              %div
+                %a{:href => "javascript:void(0)"} Best Icon Set
+              .font-size-xs.text-muted 26 min ago
+            %li
+              %i.si.si-pencil.text-info
+              .font-w600 You edited the file
+              %div
+                %a{:href => "javascript:void(0)"}
+                  %i.fa.fa-file-text-o
+                  Docs.doc
+              .font-size-xs.text-muted 3 hours ago
+            %li
+              %i.si.si-plus.text-success
+              .font-w600 New user
+              %div
+                %a{:href => "javascript:void(0)"} StudioWeb - View Profile
+              .font-size-xs.text-muted 5 hours ago
+            %li
+              %i.si.si-wrench.text-warning
+              .font-w600 Core v3.9 is available
+              %div
+                %a{:href => "javascript:void(0)"} Update now
+              .font-size-xs.text-muted 8 hours ago
+            %li
+              %i.si.si-user-follow.text-pulse
+              .font-w600 +1 Friend Request
+              %div
+                %a{:href => "javascript:void(0)"} Accept
+              .font-size-xs.text-muted 1 day ago
+      / END Notifications
+    / END Side Content
+  / END Side Overlay Scroll Container
+/ END Side Overlay

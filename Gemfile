@@ -9,6 +9,10 @@ gem 'puma', '~> 3.11'
 gem 'webpacker'
 gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'devise'
+gem 'barby'
+gem 'haml-rails', '~> 1.0'
+gem 'simple_form'
 
 # gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
@@ -18,9 +22,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.8'
-  gem 'cucumber-rails', require: false
   gem 'shoulda-matchers', '4.0.0.rc1'
-  gem 'rails-controller-testing'
+  gem 'pry-rails', '~> 0.3.9'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
 end

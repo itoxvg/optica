@@ -1,0 +1,5 @@
+%h1 vendedores
+= link_to "crear vendedor", new_vendedor_path
+%br/
+= link_to "regresar", root_path
+= render partial: 'usuarios/table', locals: { usuarios: @vendedores }

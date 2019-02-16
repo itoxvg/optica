@@ -1,0 +1,10 @@
+.block
+  .block-header.block-header-default
+    %h3.block-title Lista de Micas
+    .block-options
+      .block-options-item
+        = link_to [:new, :mica], class: 'btn btn-alt-secondary' do
+          %i.si.si-plus
+          Registrar Mica
+  .block-content
+    = render 'productos/table', productos: @micas

@@ -1,0 +1,6 @@
+%h1
+  editar #{@vendedor.nombre}
+= render partial: 'usuarios/form', locals: { usuario: @vendedor }
+= link_to 'detalle', @vendedor
+|
+= link_to 'regresar', vendedores_path
