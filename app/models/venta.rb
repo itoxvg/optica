@@ -11,7 +11,7 @@ class Venta < ApplicationRecord
   accepts_nested_attributes_for :vendidos
   accepts_nested_attributes_for :cliente
 
-  validates :cliente, presence: true
+  validates :cliente, :fecha_entrega, presence: true
   validates :total, numericality: { greater_than: 0 }
 
   def asignar_siguiente_codigo

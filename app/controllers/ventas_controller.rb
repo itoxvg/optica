@@ -18,10 +18,14 @@ class VentasController < ApplicationController
   def create
     @venta = current_usuario.ventas.build(venta_params)
 
-    if @venta.save
-      redirect_to @venta, notice: 'La venta fue creada correctamente'
-    else
-      render :new
+    respond_to do |format|
+      if @venta.save
+        format.html { redirect_to @venta, notice: 'La venta fue creada correctamente' }
+        format.json { render :show, status: :created, location: @venta }
+      else
+        format.html { render :new }
+        format.json { render json: @venta.errors, status: :unprocessable_entity }
+      end
     end
   end
 

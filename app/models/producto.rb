@@ -11,4 +11,10 @@ class Producto < ApplicationRecord
   def to_s
     "#{codigo} #{nombre}"
   end
+  #alias_method :text, :to_s
+
+  #def as_json(options={})
+    #super(only: [:id],
+          #methods: [:text])
+  #end
 end

@@ -10,6 +10,7 @@ RSpec.describe Venta, type: :model do
   it { should accept_nested_attributes_for :cliente }
 
   it { should validate_presence_of :cliente }
+  it { should validate_presence_of :fecha_entrega }
 
   it { should_not allow_value(0).for(:total) }
 end
