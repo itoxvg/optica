@@ -13,6 +13,7 @@ gem 'devise'
 gem 'barby'
 gem 'haml-rails', '~> 1.0'
 gem 'simple_form'
+gem 'kaminari'
 
 # gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'

@@ -24,3 +24,12 @@
               = link_to [:edit, producto], class: 'btn btn-alt-warning' do
                 %i.si.si-pencil
                 editar
+    %tfoot
+      %tr
+        %td{ colspan: 6 }
+          .row
+            .col-6
+              = paginate productos
+            .col-6
+              .pull-right
+                = page_entries_info productos

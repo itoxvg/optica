@@ -6,6 +6,6 @@ FactoryBot.define do
     precio_venta { 1 }
     precio_compra { 1 }
     existencia { 1 }
-    tipo{ nil }
+    tipo { nil }
   end
 end

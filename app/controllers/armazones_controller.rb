@@ -2,7 +2,7 @@ class ArmazonesController < ApplicationController
   before_action :set_armazon, only: [:show, :edit, :update, :destroy]
 
   def index
-    @armazones = Armazon.all
+    @armazones = Armazon.page(params[:page])
   end
 
   def show
