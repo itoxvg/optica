@@ -8,13 +8,11 @@ class Producto < ApplicationRecord
   validates :precio_venta, numericality: { greater_than: 0 }
   validates :codigo, uniqueness: { case_sensitive: false }
 
+  def self.buscar texto
+    where("concat_ws(' ', codigo, nombre, tipo, type) ILIKE ?", "%#{texto&.squish}%")
+  end
+
   def to_s
     "#{codigo} #{nombre}"
   end
-  #alias_method :text, :to_s
-
-  #def as_json(options={})
-    #super(only: [:id],
-          #methods: [:text])
-  #end
 end
