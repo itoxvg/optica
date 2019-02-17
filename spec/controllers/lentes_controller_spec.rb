@@ -5,7 +5,7 @@ RSpec.describe LentesController, type: :controller do
   let(:vendedor) { create :vendedor }
 
   let(:valid_attributes) do
-    attributes_for :lente, usuario: vendedor
+    attributes_for :lente, usuario_id: vendedor.id
   end
   let(:invalid_attributes) { attributes_for :lente, nombre: nil }
 

@@ -5,7 +5,7 @@ RSpec.describe ArmazonesController, type: :controller do
   let(:vendedor) { create :vendedor }
 
   let(:valid_attributes) do
-    attributes_for :armazon, usuario: vendedor
+    attributes_for :armazon, usuario_id: vendedor.id
   end
   let(:invalid_attributes) { attributes_for :armazon, nombre: nil }
 

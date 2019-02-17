@@ -5,7 +5,7 @@ RSpec.describe MicasController, type: :controller do
   let(:vendedor) { create :vendedor }
 
   let(:valid_attributes) do
-    attributes_for :mica, usuario: vendedor
+    attributes_for :mica, usuario_id: vendedor.id
   end
   let(:invalid_attributes) { attributes_for :mica, nombre: nil }
 
