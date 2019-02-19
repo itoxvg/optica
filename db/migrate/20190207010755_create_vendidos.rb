@@ -4,7 +4,8 @@ class CreateVendidos < ActiveRecord::Migration[5.2]
       t.references :venta, foreign_key: true
       t.references :producto, foreign_key: { to_table: :productos }
       t.integer :cantidad, default: 1, null: false
-      t.money :precio, default: 0, null: false
+      t.money :precio_venta, default: 0
+      t.money :precio_compra, default: 0
       t.money :descuento, default: 0, null: false
       t.money :subtotal, default: 0, null: false
       t.text :observaciones

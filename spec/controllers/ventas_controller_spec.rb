@@ -10,12 +10,12 @@ RSpec.describe VentasController, type: :controller do
   let(:vendidos) do
     [
       {
-        producto_id: lente.id, cantidad: 1,
-        precio: lente.precio_venta, descuento: 0, subtotal: 100
+        producto_id: lente.id, cantidad: 1, precio_compra: lente.precio_compra,
+        precio_venta: lente.precio_venta, descuento: 0, subtotal: 100
       },
       {
-        producto_id: mica.id, cantidad: 1,
-        precio: mica.precio_venta, descuento: 10, subtotal: 200
+        producto_id: mica.id, cantidad: 1, precio_compra: mica.precio_compra,
+        precio_venta: mica.precio_venta, descuento: 10, subtotal: 200
       }
     ]
   end

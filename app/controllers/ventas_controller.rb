@@ -54,7 +54,8 @@ class VentasController < ApplicationController
       :descuento, :total,
       cliente_attributes: [:id, :nombre, :telefono],
       vendidos_attributes: [
-        :id, :producto_id, :cantidad, :precio, :descuento, :subtotal
+        :id, :producto_id, :cantidad, :precio_venta, :precio_compra,
+        :descuento, :subtotal
       ]
     )
   end

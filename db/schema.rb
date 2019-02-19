@@ -63,7 +63,8 @@ ActiveRecord::Schema.define(version: 2019_02_07_010755) do
     t.bigint "venta_id"
     t.bigint "producto_id"
     t.integer "cantidad", default: 1, null: false
-    t.money "precio", scale: 2, default: "0.0", null: false
+    t.money "precio_venta", scale: 2, default: "0.0"
+    t.money "precio_compra", scale: 2, default: "0.0"
     t.money "descuento", scale: 2, default: "0.0", null: false
     t.money "subtotal", scale: 2, default: "0.0", null: false
     t.text "observaciones"
