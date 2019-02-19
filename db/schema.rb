@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_010755) do
     t.datetime "fecha_entrega", default: -> { "now()" }
     t.money "descuento", scale: 2, default: "0.0"
     t.money "total", scale: 2, default: "0.0"
+    t.money "pago", scale: 2, default: "0.0"
     t.bigint "cliente_id"
     t.bigint "usuario_id"
     t.datetime "created_at", null: false

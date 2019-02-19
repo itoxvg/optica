@@ -9,7 +9,6 @@ class VentasController < ApplicationController
   end
 
   def new
-    @venta = Venta.new cliente: Cliente.new
   end
 
   def edit
@@ -51,7 +50,7 @@ class VentasController < ApplicationController
   def venta_params
     params.require(:venta).permit(
       :observaciones, :saldada, :fecha_entrega,
-      :descuento, :total,
+      :descuento, :total, :pago,
       cliente_attributes: [:id, :nombre, :telefono],
       vendidos_attributes: [
         :id, :producto_id, :cantidad, :precio_venta, :precio_compra,

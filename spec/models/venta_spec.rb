@@ -11,6 +11,8 @@ RSpec.describe Venta, type: :model do
 
   it { should validate_presence_of :cliente }
   it { should validate_presence_of :fecha_entrega }
+  it { should validate_presence_of :pago }
 
   it { should_not allow_value(0).for(:total) }
+  it { should_not allow_value(0).for(:pago) }
 end

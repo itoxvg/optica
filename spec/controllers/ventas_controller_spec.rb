@@ -27,6 +27,7 @@ RSpec.describe VentasController, type: :controller do
       fecha_entrega: Time.now,
       descuento: 10,
       total: 290,
+      pago: 290,
       usuario_id: vendedor.id,
       cliente_attributes: cliente,
       vendidos_attributes: vendidos
