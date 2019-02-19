@@ -34,7 +34,7 @@
       <div class="col-4">
         <div class="form-group">
           <label for="descuento" class="form-control-label"> Descuento </label>
-          <input type="number" :value="descuento" id="descuento" class="form-control" readonly/>
+          <input type="text" :value="descuento | dinero" id="descuento" class="form-control" readonly/>
         </div>
       </div>
 
@@ -43,7 +43,7 @@
           <label for="total" class="form-control-label">
             Total <span class="text-danger">*</span>
           </label>
-          <input type="number" :value="total" id="total" class="form-control"
+          <input type="text" :value="total | dinero" id="total" class="form-control"
             :class="errores.total ? 'is-invalid' : ''" readonly/>
           <div class="invalid-feedback" v-if="errores.total">{{ errores.total[0] }}</div>
         </div>
@@ -101,7 +101,7 @@
                       id="cantidad"
                       class="form-control"/>
                   </td>
-                  <td class="text-right">{{ vendido.precio_venta }}</td>
+                  <td class="text-right">{{ vendido.precio_venta | dinero }}</td>
                   <td>
                     <input type="number" v-model="vendido.descuento"
                       @change.prevent="calcularSubtotal"
@@ -109,7 +109,7 @@
                       id="descuento"
                       class="form-control"/>
                   </td>
-                  <td class="text-right">{{ vendido.subtotal }}</td>
+                  <td class="text-right">{{ vendido.subtotal | dinero }}</td>
                   <td class="text-center">
                     <div class="btn-group">
                       <button type="button" @click.prevent="eliminarProducto(index)"

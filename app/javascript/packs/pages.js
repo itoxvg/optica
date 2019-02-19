@@ -7,6 +7,15 @@ axios.defaults.headers.post['Accept'] = 'application/json'
 axios.defaults.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 Vue.prototype.$http = axios
 
+Vue.filter('dinero', (value) => {
+  let formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 0
+  })
+  return formatter.format(value)
+})
+
 import VentasForm from '../pages/ventas/form.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
