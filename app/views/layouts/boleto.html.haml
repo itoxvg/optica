@@ -1,0 +1,58 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}/
+    %title Boleto
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    :css
+      table { width: "100%"; margin: 0 auto; }
+      td { border-bottom: 1px solid #ddd; }
+
+      .contenido {
+        font-family: Helvetica;
+        font-size: 10pt;
+        font-weight: 400;
+        width: 260px;
+        margin-left: 10px;
+      }
+
+      .linea {
+        border-top: 1px dashed #000;
+        display: inline-block;
+        width: 100%;
+      }
+      .line-height { line-height: 15px; }
+
+      .texto-centro { text-align: center; }
+      .texto-izq { text-align: left; }
+      .texto-der { text-align: right; }
+      .texto-min { font-size: 8pt; }
+
+      .fila div { display: inline-block; }
+      .col70 { width: 66%; vertical-align: top; }
+      .col50 { width: 49%; vertical-align: top; }
+      .col30 { width: 32%; vertical-align: top; }
+
+      .espacio-abajo { padding-bottom: 5px; }
+      .espacio-arriba { padding-top: 10px; }
+
+  %body
+    .contenido
+      .linea
+      = yield
+
+      .texto-min.texto-centro
+        impresión ticket #{l Time.current, format: :long }
+      .linea
+
+    :javascript
+      window.addEventListener('load', function() {
+        window.print()
+      })
+
+      window.addEventListener('load', function() {
+        this.close()
+      })

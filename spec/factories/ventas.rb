@@ -7,7 +7,7 @@ FactoryBot.define do
     descuento { 0 }
     total { 1 }
     pago { 1 }
-    cliente { nil }
+    cliente
     usuario { nil }
   end
 end

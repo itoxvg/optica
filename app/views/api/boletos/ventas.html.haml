@@ -1,0 +1,48 @@
+.fila.texto-min
+  .col30.texto-centro= @venta.codigo
+  .col70.texto-der= l @venta.created_at, format: :long
+.fila.espacio-arriba
+  .col50.texto-centro
+    %strong vendedor
+    %br=@venta.usuario
+  .col50.texto-centro
+    %strong cliente
+    %br=@venta.cliente
+
+.espacio-arriba.espacio-abajo
+  .texto-centro TICKET DE VENTA
+
+%table
+  %thead
+    %th código
+    %th cantidad
+    %th descuento
+    %th precio
+  %tbody
+    - @venta.vendidos.each do |vendido|
+      %tr
+        %td= vendido.producto.codigo
+        %td.texto-centro= vendido.cantidad
+        %td.texto-der= number_to_currency vendido.descuento
+        %td.texto-der= number_to_currency vendido.precio_venta
+  %tfoot.texto-izq
+    %tr
+      %th{ colspan: 2 }
+      %th subtotal
+      %th.texto-der= number_to_currency @venta.vendidos.map(&:precio_venta).reduce(0,:+)
+    %tr
+      %th{ colspan: 2 }
+      %th descuento
+      %th.texto-der= number_to_currency @venta.vendidos.map(&:descuento).reduce(0,:+)
+    %tr
+      %th{ colspan: 2 }
+      %th total
+      %th.texto-der= number_to_currency @venta.total
+    %tr
+      %th{ colspan: 2}
+      %th pago
+      %th.texto-der= number_to_currency @venta.pago
+
+.fila.texto-centro.espacio-arriba.espacio-abajo
+  %strong fecha de entrega:
+  = l @venta.fecha_entrega, format: :fecha

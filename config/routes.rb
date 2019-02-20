@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   devise_for :usuarios
 
-  namespace :api, defaults: { format: :json } do
+  namespace :api do
     resources :productos, only: :index
+    resources :boletos, only: [] do
+      get :ventas, on: :member
+    end
   end
 
   resources :armazones
