@@ -192,7 +192,12 @@ export default {
     vender() {
       this.$http.post('/ventas', this.venta)
         .then(response => {
-          //TODO lanzar notificacion
+          window.$.notify({
+            title: "<strong>Ventas</strong>",
+            message: `La venta con folio ${response.data.data.codigo} fue creada correctamente.`
+          })
+
+          setTimeout(() => window.location.href = response.data.data.url, 2000)
         })
         .catch(err => {
           this.errors = {}

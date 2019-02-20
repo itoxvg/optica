@@ -7,5 +7,8 @@ import 'jquery.appear'
 import 'select2/dist/js/select2.full.min.js'
 import 'select2/dist/css/select2.min.css'
 
+import 'bootstrap-notify'
+
 import 'assets/js/codebase'
+import 'assets/js/optica'
 
