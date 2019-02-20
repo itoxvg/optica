@@ -196,7 +196,7 @@ export default {
             title: "<strong>Ventas</strong>",
             message: `La venta con folio ${response.data.data.codigo} fue creada correctamente.`
           })
-
+          window.open(`${window.location.origin}/api/boletos/${response.data.data.id}/ventas`)
           setTimeout(() => window.location.href = response.data.data.url, 2000)
         })
         .catch(err => {
