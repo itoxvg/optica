@@ -1,35 +1,40 @@
-module Codigo
-  class Siguiente
-    LARGO_DE_CODIGO = 7
+require 'barby/barcode/ean_13'
 
-    def asignar model
-      return model.codigo = "V0000001" if es_primer_registro?
-      model.codigo = asignar_codigo
-    end
+class Codigo::Siguiente
 
-    def es_primer_registro?
-      Venta.count < 1
-    end
+  attr_accessor :modelo
 
-    def asignar_codigo
-      buscar_codigo
-    end
+  def initialize modelo
+    @modelo = modelo
+  end
 
-    def buscar_codigo
-      elimina_prefijo Venta.last.codigo
-    end
+  def asignar
+    return primar_codigo if es_primer_registro?
+    modelo.codigo = siguiente_codigo
+  end
 
-    def elimina_prefijo codigo
-      sumar_uno codigo.delete('V')
-    end
+  def es_primer_registro?
+    modelo.class.count < 1
+  end
 
-    def sumar_uno codigo
-      aplicar_formato codigo.to_i + 1
-    end
+  def primar_codigo
+    modelo.codigo = modelo.class::PRIMER_CODIGO
+  end
 
-    def aplicar_formato codigo
-      codigo_con_ceros = codigo.to_s.rjust(LARGO_DE_CODIGO, '0')
-      "#{Venta::PREFIJO_CODIGO}#{codigo_con_ceros}"
-    end
+  def siguiente_codigo
+    eliminar_checksum modelo.class.last.codigo
+  end
+
+  def eliminar_checksum codigo
+    sumar_uno codigo.chop!
+  end
+
+  def sumar_uno codigo
+    siguiente = (codigo.to_i + 1).to_s
+    agregar_checksum siguiente
+  end
+
+  def agregar_checksum codigo
+    Barby::EAN13.new(codigo).to_s
   end
 end
