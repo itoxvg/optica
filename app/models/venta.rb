@@ -18,6 +18,10 @@ class Venta < ApplicationRecord
     vendidos.map { |v| v.precio_venta * v.cantidad }.reduce(0, :+)
   end
 
+  def suma_descuentos
+    vendidos.map(&:descuento).reduce(0,:+)
+  end
+
   def to_s
     codigo
   end

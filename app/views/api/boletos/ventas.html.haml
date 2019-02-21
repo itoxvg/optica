@@ -33,7 +33,7 @@
     %tr
       %th{ colspan: 2 }
       %th descuento
-      %th.texto-der= number_to_currency @venta.vendidos.map(&:descuento).reduce(0,:+)
+      %th.texto-der= number_to_currency @venta.suma_descuentos
     %tr
       %th{ colspan: 2 }
       %th total
