@@ -2,12 +2,12 @@
   .col30.texto-centro= @venta.codigo
   .col70.texto-der= l @venta.created_at, format: :long
 .fila.espacio-arriba
-  .col50.texto-centro
+  .col50
     %strong vendedor
-    %br=@venta.usuario
-  .col50.texto-centro
+    %br= @venta.usuario
+  .col50
     %strong cliente
-    %br=@venta.cliente
+    %br= @venta.cliente
 
 .espacio-arriba.espacio-abajo
   .texto-centro TICKET DE VENTA
@@ -43,6 +43,10 @@
       %th pago
       %th.texto-der= number_to_currency @venta.pago
 
-.fila.texto-centro.espacio-arriba.espacio-abajo
-  %strong fecha de entrega:
-  = l @venta.fecha_entrega, format: :fecha
+.fila
+  .col50
+    = codigo_de_barras(@venta)
+  .col50.texto-centro
+    fecha de entrega
+    = l @venta.fecha_entrega, format: :fecha
+
