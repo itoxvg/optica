@@ -14,11 +14,13 @@ class Venta < ApplicationRecord
   validates :cliente, :fecha_entrega, :pago, presence: true
   validates :total, :pago, numericality: { greater_than: 0 }
 
-  def asignar_siguiente_codigo
-    Codigo::Siguiente.new(self).asignar
-  end
-
   def to_s
     codigo
+  end
+
+  private
+
+  def asignar_siguiente_codigo
+    Codigo::Siguiente.new(self).asignar
   end
 end
