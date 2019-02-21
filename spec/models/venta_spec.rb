@@ -30,6 +30,19 @@ RSpec.describe Venta, type: :model do
     end # context suma el precio_venta de los vendidos
   end # describe "#suma_precios_venta"
 
+  describe "#suma_descuentos" do
+    context "suma el descuento de los vendidos" do
+      let(:venta) do
+        create :venta, :con_dos_armazones, :con_dos_micas,
+          total: 800, pago: 800
+      end
+
+      it "debe ser 100" do
+        expect(venta.suma_descuentos).to eq 100
+      end
+    end # context suma el descuento de los vendidos
+  end # describe "#suma_descuentos"
+
   describe "#asignar_siguiente_codigo" do
     context "when venta without codigo" do
       let(:venta) { build :venta, codigo: nil }
