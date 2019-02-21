@@ -1,33 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Codigo::Siguiente do
-  describe "Venta" do
-    let(:vendedor) { create :vendedor }
-    let(:cliente) { create :cliente }
-    let(:venta_uno) do
-      create :venta, cliente: cliente, usuario: vendedor
-    end
-    let(:nueve_ventas) do
-      create_list :venta, 9, cliente: cliente, usuario: vendedor
-    end
-    let(:venta) do
-      create :venta, cliente: cliente, usuario: vendedor
-    end
 
-    context "#asignar" do
-      it "returns 'V0000001'" do
-        expect(venta.codigo).to eq 'V0000001'
+  describe "#asignar" do
+    context "Venta" do
+      let(:venta) { create :venta }
+      let(:nueve_ventas) { create_list :venta, 9 }
+      let(:cuarenta_y_nueve_ventas) { create_list :venta, 49 }
+
+      it "returns '1000000000016' if is venta one" do
+        expect(venta.codigo).to eq '1000000000016'
       end
 
-      it "returns 'V0000002'" do
-        venta_uno
-        expect(venta.codigo).to eq 'V0000002'
-      end
-
-      it "returns 'V0000010'" do
+      it "returns '1000000000108' if is venta ten" do
         nueve_ventas
-        expect(venta.codigo).to eq 'V0000010'
+        expect(venta.codigo).to eq '1000000000108'
       end
-    end # context #asignar
-  end # describe "Venta"
+
+      it "returns '1000000000504' if is venta fifty" do
+        cuarenta_y_nueve_ventas
+        expect(venta.codigo).to eq '1000000000504'
+      end
+    end # context "Venta"
+  end # describe #asignar
 end

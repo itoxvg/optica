@@ -8,6 +8,6 @@ FactoryBot.define do
     total { 1 }
     pago { 1 }
     cliente
-    usuario { nil }
+    association :usuario, factory: :vendedor
   end
 end

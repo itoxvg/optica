@@ -1,5 +1,5 @@
 class Venta < ApplicationRecord
-  PREFIJO_CODIGO = 'V'
+  PRIMER_CODIGO = "1000000000016"
 
   before_create :asignar_siguiente_codigo
 
@@ -15,7 +15,7 @@ class Venta < ApplicationRecord
   validates :total, :pago, numericality: { greater_than: 0 }
 
   def asignar_siguiente_codigo
-    Codigo::Siguiente.new.asignar(self)
+    Codigo::Siguiente.new(self).asignar
   end
 
   def to_s
