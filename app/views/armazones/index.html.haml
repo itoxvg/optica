@@ -1,10 +1,12 @@
 .block
   .block-header.block-header-default
-    %h3.block-title Lista de Armazones
+    %h3.block-title
+      %i.fa.fa-adjust
+      Lista de armazones
     .block-options
       .block-options-item
         = link_to [:new, :armazon], class: 'btn btn-alt-secondary' do
-          %i.si.si-plus
-          Registrar Armazon
+          %i.fa.fa-plus
+          registrar armazon
   .block-content
     = render 'productos/table', productos: @armazones

@@ -1,62 +1,20 @@
-/ Sidebar
 %nav#sidebar
-  / Sidebar Scroll Container
   #sidebar-scroll
-    / Sidebar Content
     .sidebar-content
-      / Side Header
       .content-header.content-header-fullrow.px-15.bg-black-op-10
-        / Mini Mode
         .content-header-section.sidebar-mini-visible-b
-          / Logo
           %span.content-header-item.font-w700.font-size-xl.float-left.animated.fadeIn
             %span.text-dual-primary-dark j
             %span.text-primary &amp;j
-          / END Logo
-        / END Mini Mode
         / Normal Mode
         .content-header-section.text-center.align-parent.sidebar-mini-hidden
-          / Close Sidebar, Visible only on mobile screens
-          / Layout API, functionality initialized in Codebase() -> uiApiLayout()
           %button.btn.btn-circle.btn-dual-secondary.d-lg-none.align-v-r{"data-action" => "sidebar_close", "data-toggle" => "layout", :type => "button"}
             %i.fa.fa-times.text-danger
-          / END Close Sidebar
-          / Logo
           .content-header-item
             = link_to root_path, class: 'link-effect font-w700' do
               %span.font-size-xl.text-dual-primary-dark Optica
               %span.font-size-xl.text-primary J&amp;J
-          / END Logo
         / END Normal Mode
-      / END Side Header
-      / Side User
-      /
-        <div class="content-side content-side-full content-side-user px-10 align-parent">
-        <div class="sidebar-mini-visible-b align-v animated fadeIn">
-        <img class="img-avatar img-avatar32" src="" alt="">
-        </div>
-        
-        <div class="sidebar-mini-hidden-b text-center">
-        <a class="img-link" href="#">
-        <img class="img-avatar" src="assets/media/avatars/avatar15.jpg" alt="">
-        </a>
-        <ul class="list-inline mt-10">
-        <li class="list-inline-item">
-        <a class="link-effect text-dual-primary-dark font-size-xs font-w600 text-uppercase" href="#"><haml_loud> current_usuario </haml_loud></a>
-        </li>
-        <li class="list-inline-item">
-        <a class="link-effect text-dual-primary-dark" data-toggle="layout" data-action="sidebar_style_inverse_toggle" href="javascript:void(0)">
-        <i class="si si-drop"></i>
-        </a>
-        </li>
-        <li class="list-inline-item">
-        <haml_loud> link_to destroy_usuario_session_path, class: &#39;link-effect text-dual-primary-dark&#39; do </haml_loud><haml_block>
-        <i class="si si-logout"></i>
-        </haml_block>            </li>
-        </ul>
-        </div>
-        </div>
-      / END Side User
       / Side Navigation
       .content-side.content-side-full
         %ul.nav-main
@@ -66,7 +24,7 @@
           %li
             = link_to [:new, :venta] do
               %i.fa.fa-shopping-cart
-              %span.sidebar-mini-hide Tienda
+              %span.sidebar-mini-hide Punto de venta
           %li
             = link_to [:ventas] do
               %i.fa.fa-history
@@ -83,7 +41,10 @@
             = link_to [:micas] do
               %i.fa.fa-clone
               %span.sidebar-mini-hide Micas
+      .content-side
+        %ul.nav-main
+          %li
+            = link_to destroy_usuario_session_path do
+              %i.fa.fa-sign-out
+              %span.sidebar-mini-hide cerrar sesión
       / END Side Navigation
-    / Sidebar Content
-  / END Sidebar Scroll Container
-/ END Sidebar

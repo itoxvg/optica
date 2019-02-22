@@ -1,32 +1,32 @@
 .block
   .block-header.block-header-default
-    %h3.block-title Historial de ventas
+    %h3.block-title
+      %i.fa.fa-history
+      Historial de ventas
     .block-options
       .block-options-item
         = link_to [:new, :venta], class: 'btn btn-alt-secondary' do
-          %i.si.si-plus
-          Registrar venta
+          %i.fa.fa-plus
+          registrar venta
   .block-content
     .table-responsive
-      %table.table.table-striped.table-vcenter
+      %table.table.table-striped.table-hover.table-sm.table-vcenter
         %thead
           %tr
             %th código
             %th fecha entrega
-            %th descuento
             %th total
+            %th pago
             %th cliente
-            %th vendedor
             %th.text-center{:style => "width: 100px;"} Acciones
         %tbody
           - @ventas.each do |venta|
             %tr
               %td= venta.codigo
-              %td= venta.fecha_entrega
-              %td= number_to_currency venta.descuento
+              %td= l venta.fecha_entrega, format: :fecha
               %td= number_to_currency venta.total
+              %td= number_to_currency venta.pago
               %td= venta.cliente
-              %td= venta.usuario
               %td
                 .btn-group
                   = link_to venta, class: 'btn btn-alt-info' do

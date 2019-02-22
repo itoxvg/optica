@@ -1,34 +1,53 @@
 .block
   .block-header.block-header-default
     %h3.block-title
-      Detalles de la venta #{@venta}
+      %i.si.si-eye
+      detalles de la venta #{@venta}
     .block-options
       .block-options-item
+        %strong vendedor
+        = @venta.usuario
   .block-content
-    %p
-      %strong Codigo:
-      = @venta.codigo
-    %p
-      %strong Observaciones:
-      = @venta.observaciones
-    %p
-      %strong Saldada:
-      = @venta.saldada
-    %p
-      %strong Fecha entrega:
-      = @venta.fecha_entrega
-    %p
-      %strong Descuento:
-      = @venta.descuento
-    %p
-      %strong Total:
-      = @venta.total
-    %p
-      %strong Cliente:
-      = @venta.cliente
-    %p
-      %strong Usuario:
-      = @venta.usuario
-    = link_to [:edit, @venta], class: 'btn btn-alt-warning' do
-      %i.si.si-pencil
-      editar
+    %table.table.table-hover.table-sm.table-vcenter
+      %tr
+        %th saldada:
+        %td= @venta.saldada
+        %th cliente:
+        %td= @venta.cliente
+        %th fecha entrega:
+        %td= l @venta.fecha_entrega, format: :fecha
+      %tr
+        %th descuento:
+        %td= number_to_currency @venta.descuento
+        %th total:
+        %td= number_to_currency @venta.total
+        %th observaciones:
+        %td= @venta.observaciones
+
+    %h4.title.text-center
+      = pluralize(@venta.vendidos.count, 'producto vendido', 'productos vendidos')
+    .table-responsive
+      %table.table.table-striped.table-hover.table-sm.table-vcenter.text-center
+        %tr
+          %th código
+          %th nombre
+          %th cantidad
+          %th.text-right precio venta
+          %th.text-right descunto
+          %th.text-right subtotal
+          %th tipo
+        %tbody
+          - @venta.vendidos.each do |vendido|
+            = render vendido
+
+  .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
+    = link_to [:ventas], class: 'btn btn-alt-secondary' do
+      %i.si.si-arrow-left
+      regresar
+    .btn-group.pull-right
+      = link_to ventas_api_boleto_path(@venta), class: 'btn btn-alt-secondary', target: '_blank' do
+        %i.fa.fa-print
+        imprimir
+      = link_to [:edit, @venta], class: 'btn btn-alt-warning' do
+        %i.si.si-pencil
+        editar

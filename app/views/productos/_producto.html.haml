@@ -1,27 +1,21 @@
-%p
-  %strong Código:
-  = producto.codigo
-%p
-  %strong Nombre:
-  = producto.nombre
-%p
-  %strong Descripción:
-  = producto.descripcion
-%p
-  %strong Precio de venta:
-  = producto.precio_venta
-%p
-  %strong Precio de compra:
-  = producto.precio_compra
-%p
-  %strong Existencia:
-  = producto.existencia
-%p
-  %strong Tipo de producto:
-  = producto.tipo
-%p
-  %strong Lo registro:
-  = producto.usuario
-= link_to [:edit, producto], class: 'btn btn-alt-warning' do
-  %i.si.si-pencil
-  editar
+%table.table.table-hover.table-sm.table-vcenter
+  %tr
+    %th código:
+    %td= producto.codigo
+    %th nombre:
+    %td= producto.nombre
+  %tr
+    %th existencia:
+    %td= producto.existencia
+    %th descripción:
+    %td= producto.descripcion
+  %tr
+    %th precio de venta:
+    %td= number_to_currency producto.precio_venta
+    %th tipo de producto:
+    %td= producto.tipo
+  %tr
+    %th precio de compra:
+    %td= number_to_currency producto.precio_compra
+    %th registrado por:
+    %td= producto.usuario
