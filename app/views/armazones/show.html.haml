@@ -1,8 +1,17 @@
 .block
   .block-header.block-header-default
     %h3.block-title
-      Detalles del armazon #{@armazon}
+      %i.si.si-eye
+      detalles del armazon #{@armazon}
     .block-options
       .block-options-item
   .block-content
     = render 'productos/producto', producto: @armazon
+
+  .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
+    = link_to [:armazones], class: 'btn btn-alt-secondary' do
+      %i.si.si-arrow-left
+      regresar
+    = link_to [:edit, @armazon], class: 'btn btn-alt-warning pull-right' do
+      %i.si.si-pencil
+      editar

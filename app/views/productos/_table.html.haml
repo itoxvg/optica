@@ -1,8 +1,7 @@
 .table-responsive
-  %table.table.table-striped.table-vcenter
+  %table.table.table-striped.table-hover.table-sm.table-vcenter
     %thead
       %tr
-        %th #
         %th código
         %th nombre
         %th existencias
@@ -11,7 +10,6 @@
     %tbody
       - productos.each do |producto|
         %tr
-          %td= producto.id
           %td= producto.codigo
           %td= producto.nombre
           %td= producto.existencia

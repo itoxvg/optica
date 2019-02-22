@@ -1,10 +1,12 @@
 .block
   .block-header.block-header-default
-    %h3.block-title Lista de Lentes
+    %h3.block-title
+      %i.si.si-eyeglasses
+      Lista de lentes
     .block-options
       .block-options-item
         = link_to [:new, :lente], class: 'btn btn-alt-secondary' do
-          %i.si.si-plus
-          Registrar Lente
+          %i.fa.fa-plus
+          registrar lente
   .block-content
     = render 'productos/table', productos: @lentes
