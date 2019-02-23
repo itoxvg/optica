@@ -4,6 +4,7 @@ class Usuario < ApplicationRecord
   has_many :armazones
   has_many :lentes
   has_many :micas
+  has_many :tratamientos
   has_many :ventas
 
   validates :nombre, presence: true

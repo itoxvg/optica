@@ -1,0 +1,17 @@
+.block
+  .block-header.block-header-default
+    %h3.block-title
+      %i.si.si-eye
+      detalles del tratamiento #{@tratamiento}
+    .block-options
+      .block-options-item
+  .block-content
+    = render 'productos/producto', producto: @tratamiento
+
+  .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
+    = link_to [:tratamiento], class: 'btn btn-alt-secondary' do
+      %i.si.si-arrow-left
+      regresar
+    = link_to [:edit, @tratamiento], class: 'btn btn-alt-warning pull-right' do
+      %i.si.si-pencil
+      editar
