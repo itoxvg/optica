@@ -4,14 +4,15 @@
       = f.input :nombre
     .col-4
       = f.input :codigo
+    - if tipos.any?
+      .col-4
+        = f.input :tipo, collection: tipos
     .col-4
-      = f.input :tipo, collection: tipos
+      = f.input :existencia, as: :integer
     .col-4
       = f.input :precio_compra, as: :float
     .col-4
       = f.input :precio_venta, as: :float
-    .col-4
-      = f.input :existencia, as: :integer
     .col-12
       = f.input :descripcion, as: :text
     .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm

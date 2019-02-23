@@ -3,6 +3,8 @@ class Armazon < Producto
     'Armazón Completo'       => 'armazón completo',
     'Armazón de Tres Piezas' => 'armazón de tres piezas',
     'Ranurado'               => 'ranurado',
-    'Sobrepuest'             => 'sobrepuesto'
+    'Sobrepuesto'            => 'sobrepuesto'
   }
+
+  validates :tipo, presence: true
 end
