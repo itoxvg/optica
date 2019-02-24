@@ -1,0 +1,2 @@
+class Tratamiento < Producto
+end

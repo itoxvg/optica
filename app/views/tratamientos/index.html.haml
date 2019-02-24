@@ -1,0 +1,12 @@
+.block
+  .block-header.block-header-default
+    %h3.block-title
+      %i.fa.fa-bookmark
+      Lista de tratamientos
+    .block-options
+      .block-options-item
+        = link_to [:new, :tratamiento], class: 'btn btn-alt-secondary' do
+          %i.fa.fa-plus
+          registrar tratamiento
+  .block-content
+    = render 'productos/table', productos: @tratamientos

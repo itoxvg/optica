@@ -77,7 +77,6 @@
             <table class="table table-striped table-bordered table-condensed table-hover">
               <thead>
                 <tr>
-                  <th>existencia</th>
                   <th>código</th>
                   <th>nombre</th>
                   <th>tipo</th>
@@ -90,7 +89,6 @@
               </thead>
               <tbody>
                 <tr v-for="(vendido, index) in venta.vendidos_attributes" :key="vendido.id">
-                  <td>{{ vendido.existencia }}</td>
                   <td>{{ vendido.codigo }}</td>
                   <td>{{ vendido.nombre }}</td>
                   <td>{{ vendido.tipo }}</td>
@@ -101,7 +99,12 @@
                       id="cantidad"
                       class="form-control"/>
                   </td>
-                  <td class="text-right">{{ vendido.precio_venta | dinero }}</td>
+                  <td class="text-right">
+                    <input type="number" v-model="vendido.precio_venta"
+                      @keyup="calcularSubtotal"
+                      id="precio_venta"
+                      class="form-control"/>
+                  </td>
                   <td>
                     <input type="number" v-model="vendido.descuento"
                       @change.prevent="calcularSubtotal"
@@ -246,7 +249,7 @@ export default {
             let items = data.items.map((item) => {
               return {
                 id: JSON.stringify(item),
-                text: `${item.existencia} | ${item.codigo} | ${item.nombre} | ${item.tipo}`
+                text: `${item.codigo} | ${item.nombre} | $${item.precio_venta}`
               }
             })
 
