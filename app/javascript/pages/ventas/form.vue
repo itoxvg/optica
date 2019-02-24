@@ -165,11 +165,11 @@ export default {
   },
 
   mounted() {
-    this.buscador()
+    this.buscadorProductos()
     window.$('#buscar-productos').on('select2:select', (event) => {
       this.agregarProducto()
-      this.limpiarBuscador()
-      this.abrirBuscador()
+      this.limpiarBuscadorProductos()
+      this.abrirBuscadorProductos()
       this.calcularSubtotal()
     })
   },
@@ -214,11 +214,11 @@ export default {
       })
     },
 
-    abrirBuscador() {
+    abrirBuscadorProductos() {
       window.$('#buscar-productos').select2('open')
     },
 
-    limpiarBuscador() {
+    limpiarBuscadorProductos() {
       window.$("#buscar-productos").val(null).trigger("change")
     },
 
@@ -231,7 +231,7 @@ export default {
       this.venta.vendidos_attributes.splice(index, 1)
     },
 
-    buscador() {
+    buscadorProductos() {
       window.$('#buscar-productos').select2({
         placeholder: 'Buscar productos',
         language: 'es',
