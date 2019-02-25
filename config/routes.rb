@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :armazones
+  resources :clientes, only: [:show, :create]
   resources :lentes
   resources :micas
   resources :tratamientos
