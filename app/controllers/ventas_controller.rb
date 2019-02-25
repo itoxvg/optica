@@ -50,8 +50,7 @@ class VentasController < ApplicationController
   def venta_params
     params.require(:venta).permit(
       :observaciones, :saldada, :fecha_entrega,
-      :descuento, :total, :pago,
-      cliente_attributes: [:id, :nombre, :telefono],
+      :descuento, :total, :pago, :cliente_id,
       vendidos_attributes: [
         :id, :producto_id, :cantidad, :precio_venta, :precio_compra,
         :descuento, :subtotal
