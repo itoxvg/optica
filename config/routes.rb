@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :boletos, only: [] do
       get :ventas, on: :member
     end
+    resources :clientes, only: :index
     resources :productos, only: :index
   end
 
