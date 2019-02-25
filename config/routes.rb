@@ -5,10 +5,12 @@ Rails.application.routes.draw do
     resources :boletos, only: [] do
       get :ventas, on: :member
     end
+    resources :clientes, only: :index
     resources :productos, only: :index
   end
 
   resources :armazones
+  resources :clientes, only: [:show, :create]
   resources :lentes
   resources :micas
   resources :tratamientos

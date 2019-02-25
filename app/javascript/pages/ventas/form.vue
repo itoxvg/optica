@@ -1,152 +1,193 @@
 <template>
-  <form @submit.prevent="vender" id="ventas-form">
-    <div class="row">
-
-      <div class="col-4">
-        <div class="form-group">
-          <label for="fecha_entrega">
-            Fecha entrega <span class="text-danger">*</span>
-          </label>
-          <input type="date" v-model="venta.fecha_entrega" id="fecha_entrega"
-            class="form-control" :class="errores.fecha_entrega ? 'is-invalid' : ''" autocomplete="off"/>
-          <div class="invalid-feedback" v-if="errores.fecha_entrega">{{ errores.fecha_entrega[0] }}</div>
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="form-group">
-          <label for="cliente_nombre" class="form-control-label">
-            Nombre <span class="text-danger">*</span>
-          </label>
-          <input type="text" v-model="venta.cliente_attributes.nombre"
-            id="cliente_nombre" class="form-control" placeholder="Nombre del cliente" required/>
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="form-group">
-          <label for="cliente_telefono" class="form-control-label"> Telefono </label>
-          <input type="text" v-model="venta.cliente_attributes.telefono"
-            id="cliente_telefono" class="form-control" placeholder="Telefono del cliente"/>
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="form-group">
-          <label for="descuento" class="form-control-label"> Descuento </label>
-          <input type="text" :value="descuento | dinero" id="descuento" class="form-control" readonly/>
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="form-group">
-          <label for="total" class="form-control-label">
-            Total <span class="text-danger">*</span>
-          </label>
-          <input type="text" :value="total | dinero" id="total" class="form-control"
-            :class="errores.total ? 'is-invalid' : ''" readonly/>
-          <div class="invalid-feedback" v-if="errores.total">{{ errores.total[0] }}</div>
-        </div>
-      </div>
-
-      <div class="col-4">
-        <div class="form-group">
-          <label for="pago" class="form-control-label">
-            Pago <span class="text-danger">*</span>
-          </label>
-          <input type="number" v-model="venta.pago" id="pago"
-            class="form-control" :class="errores.pago ? 'is-invalid' : ''"
-            placeholder="Pago del cliente"/>
-          <div class="invalid-feedback" v-if="errores.pago">{{ errores.pago[0] }}</div>
-        </div>
-      </div>
-
-      <div class="col-12">
-        <div class="form-group">
-          <label for="observaciones" class="form-control-label"> Observaciones </label>
-          <textarea v-model="venta.observaciones" id="observaciones" class="form-control"></textarea>
-        </div>
-      </div>
-
-    </div>
-
-    <div v-if="venta_tiene_productos">
+  <div id="ventas-form">
+    <form @submit.prevent="vender">
       <div class="row">
+        <div class="col-4">
+          <div class="form-group">
+            <label for="fecha_entrega">
+              Fecha entrega <span class="text-danger">*</span>
+            </label>
+            <input type="date" v-model="venta.fecha_entrega" id="fecha_entrega"
+              class="form-control" :class="errores.fecha_entrega ? 'is-invalid' : ''" autocomplete="off"/>
+            <div class="invalid-feedback" v-if="errores.fecha_entrega">{{ errores.fecha_entrega[0] }}</div>
+          </div>
+        </div>
+
+        <div class="col-8">
+          <div class="form-group" :class="errores.cliente ? 'is-invalid' : ''">
+            <label for="buscar-clientes" class="form-control-label">
+              Seleccionar cliente <span class="text-danger">*</span>
+            </label>
+            <select id="buscar-clientes" class="form-control"></select>
+              <div class="invalid-feedback" v-if="errores.cliente">{{ errores.cliente[0] }}</div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="form-group">
+            <label for="descuento" class="form-control-label"> Descuento </label>
+            <input type="text" :value="descuento | dinero" id="descuento" class="form-control" readonly/>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="form-group">
+            <label for="total" class="form-control-label">
+              Total <span class="text-danger">*</span>
+            </label>
+            <input type="text" :value="total | dinero" id="total" class="form-control"
+              :class="errores.total ? 'is-invalid' : ''" readonly/>
+            <div class="invalid-feedback" v-if="errores.total">{{ errores.total[0] }}</div>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="form-group">
+            <label for="pago" class="form-control-label">
+              Pago <span class="text-danger">*</span>
+            </label>
+            <input type="number" v-model="venta.pago" id="pago"
+              class="form-control" :class="errores.pago ? 'is-invalid' : ''"
+              placeholder="Pago del cliente"/>
+            <div class="invalid-feedback" v-if="errores.pago">{{ errores.pago[0] }}</div>
+          </div>
+        </div>
+
         <div class="col-12">
-          <div class="table-responsive">
-            <table class="table table-striped table-bordered table-condensed table-hover">
-              <thead>
-                <tr>
-                  <th>código</th>
-                  <th>nombre</th>
-                  <th>tipo</th>
-                  <th>cantidad</th>
-                  <th>precio</th>
-                  <th>descuento</th>
-                  <th>subtotal</th>
-                  <th>acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(vendido, index) in venta.vendidos_attributes" :key="vendido.id">
-                  <td>{{ vendido.codigo }}</td>
-                  <td>{{ vendido.nombre }}</td>
-                  <td>{{ vendido.tipo }}</td>
-                  <td>
-                    <input type="number" v-model="vendido.cantidad"
-                      @change.prevent="calcularSubtotal"
-                      @keyup="calcularSubtotal"
-                      id="cantidad"
+          <div class="form-group">
+            <label for="observaciones" class="form-control-label"> Observaciones </label>
+            <textarea v-model="venta.observaciones" id="observaciones" class="form-control"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div v-if="venta_tiene_productos">
+        <div class="row">
+          <div class="col-12">
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-condensed table-hover">
+                <thead>
+                  <tr>
+                    <th>código</th>
+                    <th>nombre</th>
+                    <th>tipo</th>
+                    <th>cantidad</th>
+                    <th>precio</th>
+                    <th>descuento</th>
+                    <th>subtotal</th>
+                    <th>acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(vendido, index) in venta.vendidos_attributes" :key="vendido.id">
+                    <td>{{ vendido.codigo }}</td>
+                    <td>{{ vendido.nombre }}</td>
+                    <td>{{ vendido.tipo }}</td>
+                    <td>
+                      <input type="number" v-model="vendido.cantidad"
+                        @change.prevent="calcularSubtotal"
+                        @keyup="calcularSubtotal"
+                        id="cantidad"
+                        class="form-control"/>
+                    </td>
+                    <td class="text-right">
+                      <input type="number" v-model="vendido.precio_venta"
+                        @keyup="calcularSubtotal"
+                        id="precio_venta"
+                        class="form-control"/>
+                    </td>
+                    <td>
+                      <input type="number" v-model="vendido.descuento"
+                        @change.prevent="calcularSubtotal"
+                        @keyup="calcularSubtotal"
+                        id="descuento"
+                        class="form-control"/>
+                    </td>
+                    <td class="text-right">{{ vendido.subtotal | dinero }}</td>
+                    <td class="text-center">
+                      <div class="btn-group">
+                        <button type="button" @click.prevent="eliminarProducto(index)"
+                          class="btn btn-sm btn-danger">
+                          <i class="fa fa-times"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-10">
+          <div class="form-group">
+            <label for="buscar-productos">Seleccionar productos</label>
+            <select id="buscar-productos" class="form-control"></select>
+          </div>
+        </div>
+
+        <div class="col-2 align-self-center">
+          <button type="submit" class="btn btn-alt-primary">
+            <i class="fa fa-save"></i>
+            Cobrar
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div class="modal fade" id="registrar-cliente" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="block block-themed block-transparent mb-0">
+            <div class="block-header bg-primary-dark">
+              <h3 class="block-title"><i class="fa fa-user"></i> Registrar cliente</h3>
+              <div class="block-options">
+                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                  <i class="si si-close"></i>
+                </button>
+              </div>
+            </div>
+            <div class="block-content">
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="cliente_nombre">
+                      nombre <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" v-model="cliente.nombre" id="cliente_nombre"
+                      :class="errores.nombre ? 'is-invalid' : ''"
                       class="form-control"/>
-                  </td>
-                  <td class="text-right">
-                    <input type="number" v-model="vendido.precio_venta"
-                      @keyup="calcularSubtotal"
-                      id="precio_venta"
-                      class="form-control"/>
-                  </td>
-                  <td>
-                    <input type="number" v-model="vendido.descuento"
-                      @change.prevent="calcularSubtotal"
-                      @keyup="calcularSubtotal"
-                      id="descuento"
-                      class="form-control"/>
-                  </td>
-                  <td class="text-right">{{ vendido.subtotal | dinero }}</td>
-                  <td class="text-center">
-                    <div class="btn-group">
-                      <button type="button" @click.prevent="eliminarProducto(index)"
-                        class="btn btn-sm btn-danger">
-                        <i class="fa fa-times"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                    <div class="invalid-feedback" v-if="errores.nombre">{{ errores.nombre[0] }}</div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="cliente_telefono">
+                      telefono
+                    </label>
+                    <input type="text" v-model="cliente.telefono"
+                      id="cliente_telefono"
+                      class="form-control" autocomplete="off"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">cerrar</button>
+            <button type="button" @click.prevent="registrarCliente"
+              class="btn btn-alt-primary">
+              <i class="fa fa-save"></i> registrar
+            </button>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-10">
-        <div class="form-group">
-          <label for="buscar-productos">Seleccionar productos</label>
-          <select id="buscar-productos" class="form-control"></select>
-        </div>
-      </div>
-
-      <div class="col-2 align-self-center">
-        <button type="submit" class="btn btn-alt-primary">
-          <i class="fa fa-save"></i>
-          Cobrar
-        </button>
-      </div>
-    </div>
-
-  </form>
+  </div>
 </template>
+
 
 <script>
 export default {
@@ -157,21 +198,41 @@ export default {
       venta: {
         total: 0,
         descuento: 0,
-        cliente_attributes: {},
+        cliente_id: null,
         vendidos_attributes: [],
       },
+      cliente: {},
       errores: {}
     }
   },
 
   mounted() {
-    this.buscador()
+    this.buscadorProductos()
     window.$('#buscar-productos').on('select2:select', (event) => {
       this.agregarProducto()
-      this.limpiarBuscador()
-      this.abrirBuscador()
+      this.limpiarBuscadorProductos()
+      this.abrirBuscadorProductos()
       this.calcularSubtotal()
     })
+
+    this.buscadorClientes()
+    window.$('#buscar-clientes').on('select2:select', (event) => {
+      this.agregarCliente()
+    })
+
+    window.$('#registrar-cliente').on('shown.bs.modal', (e) => {
+      setTimeout(() => {
+        window.$('#cliente_nombre').focus()
+        window.$('#cliente_nombre').select()
+      }, 1000)
+      window.$('#buscar-clientes').select2('close')
+    })
+  },
+
+  watch: {
+    cliente() {
+      this.venta.cliente_id = this.cliente.id
+    }
   },
 
   computed: {
@@ -192,20 +253,18 @@ export default {
   },
 
   methods: {
+
     vender() {
       this.$http.post('/ventas', this.venta)
         .then(response => {
           window.$.notify({
-            title: "<strong>Ventas</strong>",
-            message: `La venta con folio ${response.data.data.codigo} fue creada correctamente.`
+           title: '<strong>Ventas</strong>',
+           message: 'La venta fue creada correctamente.'
           })
           window.open(`${window.location.origin}/api/boletos/${response.data.data.id}/ventas`)
           setTimeout(() => window.location.href = response.data.data.url, 2000)
         })
-        .catch(err => {
-          this.errors = {}
-          this.errores = err.response.data
-        })
+        .catch(err => { this.errors = {}; this.errores = err.response.data })
     },
 
     calcularSubtotal() {
@@ -214,11 +273,11 @@ export default {
       })
     },
 
-    abrirBuscador() {
+    abrirBuscadorProductos() {
       window.$('#buscar-productos').select2('open')
     },
 
-    limpiarBuscador() {
+    limpiarBuscadorProductos() {
       window.$("#buscar-productos").val(null).trigger("change")
     },
 
@@ -231,7 +290,7 @@ export default {
       this.venta.vendidos_attributes.splice(index, 1)
     },
 
-    buscador() {
+    buscadorProductos() {
       window.$('#buscar-productos').select2({
         placeholder: 'Buscar productos',
         language: 'es',
@@ -262,7 +321,69 @@ export default {
           }
         }
       })
+    },
+
+    buscadorClientes() {
+      window.$('#buscar-clientes').select2({
+        placeholder: 'Buscar cliente',
+        language: {
+          noResults() {
+            return `<button type='button' data-toggle='modal' data-target='#registrar-cliente' class='btn btn-alt-danger'>
+                      <i class='fa fa-plus'></i>
+                      registrar cliente
+                    </button>`
+          }
+        },
+        escapeMarkup: (markup) => { return markup },
+        maximumSelectionLength: 1,
+        allowClear: true,
+        ajax: {
+          url: `${window.location.origin}/api/clientes`,
+          dataType: 'json',
+          delay: 250,
+          data: (params) => { return { q: params.term } },
+          processResults: (data, params) => {
+            params.page = params.page || 1
+
+            let items = data.items.map((item) => {
+              return {
+                id: JSON.stringify(item),
+                text: item.nombre
+              }
+            })
+
+            return {
+              results: items,
+              pagination: {
+                more: (params.page * 10) < data.total_items
+              }
+            }
+          }
+        }
+      })
+    },
+
+    agregarCliente() {
+      this.cliente = JSON.parse(window.$('#buscar-clientes').val())
+    },
+
+    registrarCliente() {
+      this.$http.post('/clientes', this.cliente)
+        .then(response => {
+          this.cliente = response.data
+          window.$('#registrar-cliente').modal('hide')
+
+          window.$.notify({
+            title: `<strong>Cliente</strong>`,
+            message: `El cliente ${this.cliente.nombre} fue creada correctamente.`
+          })
+
+          let opcion = `<option value="${this.cliente.id}" selected ="selected">${this.cliente.nombre}</option>`
+          window.$('#buscar-clientes').html(opcion)
+        })
+        .catch(err => { this.errors = {}; this.errores = err.response.data })
     }
+
   }
 }
 </script>

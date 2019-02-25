@@ -7,9 +7,7 @@ class Venta < ApplicationRecord
   belongs_to :usuario
   has_many :vendidos, dependent: :destroy
   has_many :productos, through: :vendidos
-
   accepts_nested_attributes_for :vendidos
-  accepts_nested_attributes_for :cliente
 
   validates :cliente, :fecha_entrega, :pago, presence: true
   validates :total, :pago, numericality: { greater_than: 0 }

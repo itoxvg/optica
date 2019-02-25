@@ -9,5 +9,4 @@
 
 console.log('Hello World from Webpacker')
 
-import 'assets/scss/main'
-import 'assets/js/main'
+import 'assets/main'

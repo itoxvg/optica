@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe VentasController, type: :controller do
 
   let(:vendedor) { create :vendedor }
-  let(:cliente) { attributes_for :cliente }
+  let(:cliente) { create :cliente }
 
   let(:lente) { create :lente, precio_venta: 100, usuario: vendedor }
   let(:mica) { create :mica, precio_venta: 200, usuario: vendedor }
@@ -29,7 +29,7 @@ RSpec.describe VentasController, type: :controller do
       total: 290,
       pago: 290,
       usuario_id: vendedor.id,
-      cliente_attributes: cliente,
+      cliente_id: cliente.id,
       vendidos_attributes: vendidos
     }
   end
@@ -81,12 +81,6 @@ RSpec.describe VentasController, type: :controller do
         expect {
           post :create, params: { venta: valid_attributes }
         }.to change(Vendido, :count).by(2)
-      end
-
-      it "creates a new Cliente" do
-        expect {
-          post :create, params: { venta: valid_attributes }
-        }.to change(Cliente, :count).by(1)
       end
 
       it "redirects to the created venta" do
