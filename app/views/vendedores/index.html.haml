@@ -1,5 +1,12 @@
-%h1 vendedores
-= link_to "crear vendedor", new_vendedor_path
-%br/
-= link_to "regresar", root_path
-= render partial: 'usuarios/table', locals: { usuarios: @vendedores }
+.block
+  .block-header
+    %h3.block-title
+      %i.fa.fa-users
+      Lista de vendedores
+    .block-options
+      .block-options-item
+        = link_to [:new, :vendedor], class: 'btn btn-alt-secondary' do
+          %i.fa.fa-plus
+          registrar vendedor
+  .block-content
+    = render 'usuarios/table', usuarios: @vendedores

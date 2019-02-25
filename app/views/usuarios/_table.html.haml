@@ -1,10 +1,11 @@
 .table-responsive
-  %table.table.table-striped.table-bordered.table-condensed.table-hover
+  %table.table.table-striped.table-hover.table-sm.table-vcenter
     %thead
       %tr
         %th nombre
         %th email
         %th cargo
+        %th.text-center{:style => "width: 100px;"} Acciones
     %tbody
       - usuarios.each do |usuario|
         %tr
@@ -12,5 +13,10 @@
           %td= usuario.email
           %td= usuario.cargo
           %td
-            = link_to "detalles", usuario
-            = link_to "edit", [:edit, usuario]
+            .btn-group
+              = link_to usuario, class: 'btn btn-alt-info' do
+                %i.si.si-eye
+                detalles
+              = link_to [:edit, usuario], class: 'btn btn-alt-warning' do
+                %i.si.si-pencil
+                editar

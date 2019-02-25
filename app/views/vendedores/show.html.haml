@@ -1,6 +1,17 @@
-%h1
-  detalle del vendedor #{@vendedor.nombre}
-= render partial: 'usuarios/usuario', locals: { usuario: @vendedor }
-= link_to 'editar', [:edit, @vendedor]
-|
-= link_to 'regresar', vendedores_path
+.block
+  .block-header.block-header-default
+    %h3.block-title
+      %i.si.si-eye
+      detalles del vendedor #{@vendedor}
+    .block-options
+      .block-options-item
+  .block-content
+    = render 'usuarios/usuario', usuario: @vendedor
+
+  .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
+    = link_to [:vendedores], class: 'btn btn-alt-secondary' do
+      %i.si.si-arrow-left
+      regresar
+    = link_to [:edit, @vendedor], class: 'btn btn-alt-warning pull-right' do
+      %i.si.si-pencil
+      editar

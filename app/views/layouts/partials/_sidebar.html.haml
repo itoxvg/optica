@@ -29,6 +29,9 @@
             = link_to [:ventas] do
               %i.fa.fa-history
               %span.sidebar-mini-hide Historial de ventas
+          %li.nav-main-heading
+            %span.sidebar-mini-visible CS
+            %span.sidebar-mini-hidden catálogos
           %li
             = link_to [:armazones] do
               %i.fa.fa-adjust
@@ -45,6 +48,10 @@
             = link_to [:tratamientos] do
               %i.fa.fa-bookmark
               %span.sidebar-mini-hide Tratamientos
+          %li
+            = link_to [:vendedores] do
+              %i.fa.fa-users
+              %span.sidebar-mini-hide Vendedores
       .content-side
         %ul.nav-main
           %li
