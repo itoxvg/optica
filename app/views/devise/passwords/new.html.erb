@@ -1,0 +1,15 @@
+<h1 class="h3 font-w700 mt-30 mb-10">olvide mi contraseña</h1>
+
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :email,
+              required: true,
+              autofocus: true,
+              label: 'correo electronico',
+              input_html: { autocomplete: "email" } %>
+
+  <%= f.button :submit, "enviar instrucciones para recuperar la contraseña", class: "btn btn-alt-primary btn-block" %>
+<% end %>
+<p class="px-30"></p>
+<%= render "devise/shared/links" %>

@@ -1,2 +1,15 @@
-%p= usuario.nombre
-%p= usuario.cargo
+%table.table.table-hover.table-sm.table-vcenter
+  %tr
+    %th nombre:
+    %td= usuario.nombre
+    %th cargo:
+    %td= usuario.cargo
+    %th correo electrónico:
+    %td= usuario.email
+  %tr
+    %th
+    %td
+    %th registrado el:
+    %td= l usuario.created_at, format: :long
+    %th actualizado el:
+    %td= l usuario.updated_at, format: :long

@@ -1,6 +1,9 @@
-%h1
-  editar #{@vendedor.nombre}
-= render partial: 'usuarios/form', locals: { usuario: @vendedor }
-= link_to 'detalle', @vendedor
-|
-= link_to 'regresar', vendedores_path
+.block.block-themed
+  .block-header.bg-primary-dark
+    %h3.block-title
+      %i.si.si-pencil
+      modificar #{@vendedor}
+    .block-options
+      .block-options-item
+  .block-content
+    = render 'usuarios/form', usuario: @vendedor

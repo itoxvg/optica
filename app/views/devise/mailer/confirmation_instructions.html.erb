@@ -1,0 +1,10 @@
+<p class="header">Bienvenido <%= @email %>!</p>
+
+<p class="paragraph">
+  Puede confirmar el correo electrónico de su cuenta a través del siguiente enlace:
+</p>
+
+<p class="paragraph-center">
+  <%= link_to 'Confirmar mi cuenta', confirmation_url(@resource, confirmation_token: @token),
+    class: "button button--green" %>
+</p>

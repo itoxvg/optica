@@ -129,7 +129,7 @@
         </div>
 
         <div class="col-2 align-self-center">
-          <button type="submit" class="btn btn-alt-primary">
+          <button type="submit" class="btn btn-alt-success">
             <i class="fa fa-save"></i>
             Cobrar
           </button>
