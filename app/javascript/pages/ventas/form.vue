@@ -211,6 +211,7 @@ export default {
         pago: 0,
         total: 0,
         descuento: 0,
+        saldada: false,
         cliente_id: null,
         vendidos_attributes: [],
       },
@@ -266,7 +267,9 @@ export default {
 
     cambio() {
       let cambio = 0
-      if (this.venta.pago > this.venta.total) {
+      this.venta.saldada = false
+      if (this.venta.pago >= this.venta.total) {
+        this.venta.saldada = true
         cambio = this.venta.pago - this.venta.total
       }
       return cambio
