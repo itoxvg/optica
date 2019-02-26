@@ -10,4 +10,20 @@
     = stylesheet_pack_tag 'application'
     = javascript_pack_tag 'application'
   %body
-    = yield
+    #page-container.main-content-boxed
+      %main#main-container
+        .bg-image
+          .row.mx-0.bg-black-op
+            .hero-static.col-md-6.col-xl-8.d-none.d-md-flex.align-items-md-end
+              .p-30.invisible{"data-toggle" => "appear"}
+                %p.font-size-h3.font-w600.text-white
+                  opticas
+                %p.font-italic.text-white-op
+                  Copyright ©
+                  %span.js-year-copy 2019
+            .hero-static.col-md-6.col-xl-4.d-flex.align-items-center.bg-white.invisible{"data-class" => "animated fadeInRight", "data-toggle" => "appear"}
+              .content.content-full
+                %h1.h3.font-w700.mt-30.mb-10 Bienvenido al sistema
+                %h2.h5.font-w400.text-muted.mb-0 optica
+                %p.px-30
+                = yield

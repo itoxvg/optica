@@ -1,0 +1,19 @@
+<h1 class="h3 font-w700 mt-30 mb-10">iniciar sesión</h1>
+
+<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <%= f.input :email,
+                required: false,
+                autofocus: true,
+                label: 'correo electronico',
+                input_html: { autocomplete: "correo electronico" } %>
+    <%= f.input :password,
+                required: false,
+                label: 'contraseña',
+                input_html: { autocomplete: "current-password" } %>
+    <%= f.input :remember_me, as: :boolean, label: 'recuérdame' if devise_mapping.rememberable? %>
+
+    <%= f.button :submit, "iniciar sesión", class: "btn btn-alt-primary btn-block" %>
+<% end %>
+<p class="px-30"></p>
+<%= render "devise/shared/links" %>

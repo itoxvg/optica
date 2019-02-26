@@ -1,0 +1,20 @@
+<h1 class="h3 font-w700 mt-30 mb-10">cambiar mi contraseña</h1>
+
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :reset_password_token, as: :hidden %>
+  <%= f.full_error :reset_password_token %>
+
+  <%= f.input :password,
+              label: "contraseña nueva",
+              required: true,
+              autofocus: true,
+              hint: ("minimó #{@minimum_password_length} carácteres" if @minimum_password_length),
+              input_html: { autocomplete: "new-password" } %>
+  <%= f.input :password_confirmation, label: "confirmar contraseña nueva", required: true %>
+
+  <%= f.button :submit, "cambiar mi contraseña", class: 'btn btn-alt-danger btn-block' %>
+<% end %>
+<p class="px-30"></p>
+<%= render "devise/shared/links" %>
