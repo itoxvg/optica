@@ -23,14 +23,14 @@
           </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-3">
           <div class="form-group">
             <label for="descuento" class="form-control-label"> Descuento </label>
             <input type="text" :value="descuento | dinero" id="descuento" class="form-control" readonly/>
           </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-3">
           <div class="form-group">
             <label for="total" class="form-control-label">
               Total <span class="text-danger">*</span>
@@ -41,7 +41,7 @@
           </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-3">
           <div class="form-group">
             <label for="pago" class="form-control-label">
               Pago <span class="text-danger">*</span>
@@ -50,6 +50,18 @@
               class="form-control" :class="errores.pago ? 'is-invalid' : ''"
               placeholder="Pago del cliente"/>
             <div class="invalid-feedback" v-if="errores.pago">{{ errores.pago[0] }}</div>
+          </div>
+        </div>
+
+        <div class="col-3">
+          <div class="form-group">
+            <label for="cambio" class="form-control-label">
+              Cambio
+            </label>
+            <input type="text" :value="cambio | dinero" id="cambio"
+              class="form-control"
+              placeholder="Cambio del cliente"
+              readonly/>
           </div>
         </div>
 
@@ -196,8 +208,10 @@ export default {
   data() {
     return {
       venta: {
+        pago: 0,
         total: 0,
         descuento: 0,
+        saldada: false,
         cliente_id: null,
         vendidos_attributes: [],
       },
@@ -249,6 +263,16 @@ export default {
     descuento() {
       return this.venta.descuento = this.venta.vendidos_attributes
               .reduce((descuento, p) => descuento + parseFloat(p.descuento), 0)
+    },
+
+    cambio() {
+      let cambio = 0
+      this.venta.saldada = false
+      if (this.venta.pago >= this.venta.total) {
+        this.venta.saldada = true
+        cambio = this.venta.pago - this.venta.total
+      }
+      return cambio
     }
   },
 
