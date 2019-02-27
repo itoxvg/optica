@@ -2,7 +2,7 @@ class VentasController < ApplicationController
   before_action :set_venta, only: [:show, :edit, :update, :destroy]
 
   def index
-    @ventas = Venta.all
+    @ventas = Venta.recientes_primero.page(params[:page])
   end
 
   def show
