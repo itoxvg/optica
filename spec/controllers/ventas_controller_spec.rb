@@ -4,6 +4,7 @@ RSpec.describe VentasController, type: :controller do
 
   let(:vendedor) { create :vendedor }
   let(:cliente) { create :cliente }
+  let(:pago) { attributes_for :pago, efectivo: 300, anticipo: 290, cambio: 10 }
 
   let(:lente) { create :lente, precio_venta: 100, usuario: vendedor }
   let(:mica) { create :mica, precio_venta: 200, usuario: vendedor }
@@ -27,7 +28,7 @@ RSpec.describe VentasController, type: :controller do
       fecha_entrega: Time.now,
       descuento: 10,
       total: 290,
-      pago: 290,
+      pagos_attributes: [pago],
       usuario_id: vendedor.id,
       cliente_id: cliente.id,
       vendidos_attributes: vendidos
@@ -75,6 +76,12 @@ RSpec.describe VentasController, type: :controller do
         expect {
           post :create, params: { venta: valid_attributes }
         }.to change(Venta, :count).by(1)
+      end
+
+      it "crea un nuevo pago" do
+        expect {
+          post :create, params: { venta: valid_attributes }
+        }.to change(Pago, :count).by(1)
       end
 
       it "creates two new Vendido" do
