@@ -1,0 +1,36 @@
+.block.block-themed
+  .block-header.bg-primary-dark
+    %h3.block-title
+      %i.si.si-eye
+      detalles de la empresa #{@empresa}
+    .block-options
+      .block-options-item
+  .block-content
+    %table.table.table-hover.table-sm.table-vcenter
+      %tr
+        %th nombre:
+        %td= @empresa
+        %th telefono:
+        %td= @empresa.telefono
+        %th RFC:
+        %td= @empresa.rfc
+      %tr
+        %th fecha de creación:
+        %td= l @empresa.created_at, format: :long
+        %th fecha de edición:
+        %td= l @empresa.updated_at, format: :long
+        %th eslogan:
+        %td= @empresa.eslogan
+      %tr
+        %th logotipo:
+        %td= @empresa.logotipo
+        %th
+        %td{ colspan: 3 }
+
+  .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
+    = link_to [:empresas], class: 'btn btn-alt-secondary' do
+      %i.si.si-arrow-left
+      regresar
+    = link_to [:edit, @empresa], class: 'btn btn-alt-warning pull-right' do
+      %i.si.si-pencil
+      editar
