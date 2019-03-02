@@ -1,0 +1,5 @@
+%tr
+  %td= number_to_currency pago.efectivo
+  %td= number_to_currency pago.anticipo
+  %td= number_to_currency pago.cambio
+  %td= l pago.created_at, format: :long
