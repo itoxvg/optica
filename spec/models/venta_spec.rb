@@ -57,6 +57,30 @@ RSpec.describe Venta, type: :model do
     end # context suma el descuento de los vendidos
   end # describe "#suma_descuentos"
 
+  describe "#comprobar_estado_de_pago" do
+    context "cuando la venta es pagada" do
+      let(:pago) do
+        build_list :pago, 1, efectivo: 500, anticipo: 200, cambio: 300
+      end
+      let(:venta) { build :venta, pagos: pago, total: 200, saldada: false }
+
+      it "saldada debe ser true" do
+        expect { venta.save! }.to change { venta.saldada }
+      end
+    end # context cuando la venta es pagada
+
+    context "cuando la venta es pendiente" do
+      let(:pago) do
+        build_list :pago, 1, efectivo: 500, anticipo: 200, cambio: 300
+      end
+      let(:venta) { build :venta, pagos: pago, total: 300, saldada: true }
+
+      it "saldada debe ser false" do
+        expect { venta.save! }.to change { venta.saldada }
+      end
+    end # context cuando la venta es pendiente
+  end # describe "#comprobar_saldada"
+
   describe "#asignar_siguiente_codigo" do
     context "when venta without codigo" do
       let(:venta) { build :venta, codigo: nil }
