@@ -18,7 +18,7 @@ RSpec.describe Venta, type: :model do
 
   describe ".recientes_primero" do
     let!(:venta_de_ayer) { create :venta, created_at: 1.day.ago }
-    let!(:venta_de_hoy) { create :venta, created_at: Date.today }
+    let!(:venta_de_hoy) { create :venta, created_at: Date.current }
 
     it "debe mostrar la última venta creada primero" do
       expect(Venta.recientes_primero).to eq [venta_de_hoy, venta_de_ayer]
