@@ -24,9 +24,9 @@
         %th total:
         %td= number_to_currency @venta.total
         %th anticipo:
-        %td= number_to_currency @venta.pagos.map(&:anticipo).reduce(0,:+)
-        %th debe:
-        %td.text-danger= number_to_currency(@venta.total - @venta.pagos.map(&:anticipo).reduce(0,:+))
+        %td= number_to_currency @venta.suma_anticipos
+        %th deuda:
+        %td.text-danger= number_to_currency @venta.deuda
       %tr
         %th observaciones:
         %td{ colspan: 7 }= @venta.observaciones

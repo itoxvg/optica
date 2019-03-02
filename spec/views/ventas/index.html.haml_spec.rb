@@ -28,6 +28,6 @@ RSpec.describe "ventas/index", type: :view do
 
   it "mostrar la lista de ventas" do
     render
-    assert_select "tr>td", :text => "$1.00".to_s, :count => 2
+    assert_select "tr>td", :text => "$1.00".to_s, :count => 4
   end
 end

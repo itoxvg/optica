@@ -1,6 +1,7 @@
 class Venta < ApplicationRecord
   PRIMER_CODIGO = "1000000000016"
 
+  before_save :comprobar_estado_de_pago
   before_create :asignar_siguiente_codigo
 
   belongs_to :cliente
@@ -25,11 +26,27 @@ class Venta < ApplicationRecord
     vendidos.map(&:descuento).reduce(0,:+)
   end
 
+  def deuda
+    self.total - suma_anticipos
+  end
+
+  def suma_anticipos
+    self.pagos.map(&:anticipo).reduce(0,:+)
+  end
+
   def to_s
     codigo
   end
 
   private
+
+  def comprobar_estado_de_pago
+    self.saldada = anticipos_mayor_o_igual_que_total?
+  end
+
+  def anticipos_mayor_o_igual_que_total?
+    suma_anticipos >= self.total
+  end
 
   def asignar_siguiente_codigo
     Codigo::Siguiente.new(self).asignar

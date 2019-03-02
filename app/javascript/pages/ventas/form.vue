@@ -50,7 +50,11 @@
             </label>
             <input type="number" v-model="venta.pagos_attributes[0].efectivo"
               @change.prevent="calcularCambio" @keyup="calcularCambio"
+              :class="errores['pagos.efectivo'] ? 'is-invalid' : ''"
               id="efectivo" class="form-control" required="required" />
+            <div class="invalid-feedback" v-if="errores['pagos.efectivo']">
+              {{ errores['pagos.efectivo'][0] }}
+            </div>
           </div>
         </div>
 
@@ -61,7 +65,11 @@
             </label>
             <input type="number" v-model="venta.pagos_attributes[0].anticipo"
               @change.prevent="calcularCambio" @keyup="calcularCambio"
+              :class="errores['pagos.anticipo'] ? 'is-invalid' : ''"
               id="anticipo" class="form-control" required="required" />
+              <div class="invalid-feedback" v-if="errores['pagos.anticipo']">
+                {{ errores['pagos.anticipo'][0] }}
+              </div>
           </div>
         </div>
 
@@ -72,7 +80,11 @@
             </label>
             <input type="number" v-model="venta.pagos_attributes[0].cambio"
               @change.prevent="calcularCambio" @keyup="calcularCambio"
+              :class="errores['pagos.cambio'] ? 'is-invalid' : ''"
               id="cambio" class="form-control" min="0" readonly/>
+              <div class="invalid-feedback" v-if="errores['pagos.cambio']">
+                {{ errores['pagos.cambio'][0] }}
+              </div>
           </div>
         </div>
 
