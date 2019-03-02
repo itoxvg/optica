@@ -13,18 +13,16 @@
       %table.table.table-striped.table-hover.table-sm.table-vcenter
         %thead
           %tr
-            %th código
             %th estado
             %th fecha entrega
             %th total
-            %th pago
+            %th anticipo
             %th deuda
             %th cliente
             %th.text-center{:style => "width: 100px;"} Acciones
         %tbody
           - @ventas.each do |venta|
             %tr
-              %td= venta.codigo
               %td= estado_de_pago venta
               %td= l venta.fecha_entrega, format: :fecha
               %td= number_to_currency venta.total
