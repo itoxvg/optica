@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_02_141902) do
+ActiveRecord::Schema.define(version: 2019_03_02_230725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,20 @@ ActiveRecord::Schema.define(version: 2019_03_02_141902) do
   create_table "clientes", force: :cascade do |t|
     t.string "nombre", default: "", null: false
     t.string "telefono"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "domicilios", force: :cascade do |t|
+    t.string "calle"
+    t.string "numero"
+    t.string "colonia"
+    t.string "codigo_postal"
+    t.string "municipio"
+    t.string "estado", default: "Oaxaca"
+    t.string "pais", default: "México"
+    t.string "domiciliable_type"
+    t.integer "domiciliable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
