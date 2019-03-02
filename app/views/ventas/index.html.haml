@@ -18,6 +18,7 @@
             %th fecha entrega
             %th total
             %th pago
+            %th deuda
             %th cliente
             %th.text-center{:style => "width: 100px;"} Acciones
         %tbody
@@ -28,6 +29,7 @@
               %td= l venta.fecha_entrega, format: :fecha
               %td= number_to_currency venta.total
               %td= number_to_currency venta.pagos.map(&:anticipo).reduce(0,:+)
+              %td= number_to_currency(venta.total - venta.pagos.map(&:anticipo).reduce(0,:+))
               %td= venta.cliente
               %td
                 .btn-group
