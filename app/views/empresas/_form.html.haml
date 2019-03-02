@@ -1,0 +1,16 @@
+-# frozen_string_literal: true
+= simple_form_for(@empresa) do |f|
+  .row
+    .col-6
+      = f.input :nombre
+    .col-6
+      = f.input :telefono
+    .col-6
+      = f.input :rfc
+    .col-6
+      = f.input :eslogan
+    .col-6
+      = f.input :logotipo
+
+    .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
+      = f.submit class: 'btn btn-alt-primary'

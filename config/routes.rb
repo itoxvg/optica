@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :armazones
   resources :clientes, only: [:show, :create]
+  resources :empresas
   resources :lentes
   resources :micas
   resources :tratamientos
