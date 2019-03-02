@@ -26,6 +26,14 @@ class Venta < ApplicationRecord
     vendidos.map(&:descuento).reduce(0,:+)
   end
 
+  def deuda
+    self.total - suma_anticipos
+  end
+
+  def suma_anticipos
+    self.pagos.map(&:anticipo).reduce(0,:+)
+  end
+
   def to_s
     codigo
   end
@@ -37,7 +45,7 @@ class Venta < ApplicationRecord
   end
 
   def anticipos_mayor_o_igual_que_total?
-    self.pagos.map(&:anticipo).reduce(0,:+) >= self.total
+    suma_anticipos >= self.total
   end
 
   def asignar_siguiente_codigo
