@@ -7,10 +7,13 @@ class Venta < ApplicationRecord
   belongs_to :usuario
   has_many :vendidos, dependent: :destroy
   has_many :productos, through: :vendidos
-  accepts_nested_attributes_for :vendidos
+  has_many :pagos, dependent: :destroy
 
-  validates :cliente, :fecha_entrega, :pago, presence: true
-  validates :total, :pago, numericality: { greater_than: 0 }
+  accepts_nested_attributes_for :vendidos
+  accepts_nested_attributes_for :pagos
+
+  validates :cliente, :fecha_entrega, presence: true
+  validates :total, numericality: { greater_than: 0 }
 
   scope :recientes_primero, -> { Venta.order(created_at: :desc) }
 

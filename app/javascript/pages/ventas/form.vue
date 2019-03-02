@@ -23,19 +23,21 @@
           </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-2">
           <div class="form-group">
             <label for="descuento" class="form-control-label"> Descuento </label>
-            <input type="text" :value="descuento | dinero" id="descuento" class="form-control" readonly/>
+            <input type="text" :value="descuento | dinero" id="descuento"
+              class="form-control" readonly/>
           </div>
         </div>
 
-        <div class="col-3">
+        <div class="col-2">
           <div class="form-group">
             <label for="total" class="form-control-label">
               Total <span class="text-danger">*</span>
             </label>
-            <input type="text" :value="total | dinero" id="total" class="form-control"
+            <input type="text" :value="total | dinero"
+              id="total" class="form-control"
               :class="errores.total ? 'is-invalid' : ''" readonly/>
             <div class="invalid-feedback" v-if="errores.total">{{ errores.total[0] }}</div>
           </div>
@@ -43,25 +45,34 @@
 
         <div class="col-3">
           <div class="form-group">
-            <label for="pago" class="form-control-label">
-              Pago <span class="text-danger">*</span>
+            <label for="efectivo" class="form-control-label">
+              Efectivo <span class="text-danger">*</span>
             </label>
-            <input type="number" v-model="venta.pago" id="pago"
-              class="form-control" :class="errores.pago ? 'is-invalid' : ''"
-              placeholder="Pago del cliente"/>
-            <div class="invalid-feedback" v-if="errores.pago">{{ errores.pago[0] }}</div>
+            <input type="number" v-model="venta.pagos_attributes[0].efectivo"
+              @change.prevent="calcularCambio" @keyup="calcularCambio"
+              id="efectivo" class="form-control" required="required" />
           </div>
         </div>
 
         <div class="col-3">
           <div class="form-group">
-            <label for="cambio" class="form-control-label">
-              Cambio
+            <label for="anticipo" class="form-control-label">
+              Anticipo <span class="text-danger">*</span>
             </label>
-            <input type="text" :value="cambio | dinero" id="cambio"
-              class="form-control"
-              placeholder="Cambio del cliente"
-              readonly/>
+            <input type="number" v-model="venta.pagos_attributes[0].anticipo"
+              @change.prevent="calcularCambio" @keyup="calcularCambio"
+              id="anticipo" class="form-control" required="required" />
+          </div>
+        </div>
+
+        <div class="col-2">
+          <div class="form-group">
+            <label for="cambio" class="form-control-label">
+              Cambio <span class="text-danger">*</span>
+            </label>
+            <input type="number" v-model="venta.pagos_attributes[0].cambio"
+              @change.prevent="calcularCambio" @keyup="calcularCambio"
+              id="cambio" class="form-control" min="0" readonly/>
           </div>
         </div>
 
@@ -99,20 +110,17 @@
                       <input type="number" v-model="vendido.cantidad"
                         @change.prevent="calcularSubtotal"
                         @keyup="calcularSubtotal"
-                        id="cantidad"
                         class="form-control"/>
                     </td>
                     <td class="text-right">
                       <input type="number" v-model="vendido.precio_venta"
                         @keyup="calcularSubtotal"
-                        id="precio_venta"
                         class="form-control"/>
                     </td>
                     <td>
                       <input type="number" v-model="vendido.descuento"
                         @change.prevent="calcularSubtotal"
                         @keyup="calcularSubtotal"
-                        id="descuento"
                         class="form-control"/>
                     </td>
                     <td class="text-right">{{ vendido.subtotal | dinero }}</td>
@@ -208,11 +216,12 @@ export default {
   data() {
     return {
       venta: {
-        pago: 0,
         total: 0,
         descuento: 0,
-        saldada: false,
         cliente_id: null,
+        pagos_attributes: [
+          { efectivo: 0, anticipo: 0, cambio: 0 }
+        ],
         vendidos_attributes: [],
       },
       cliente: {},
@@ -263,16 +272,6 @@ export default {
     descuento() {
       return this.venta.descuento = this.venta.vendidos_attributes
               .reduce((descuento, p) => descuento + parseFloat(p.descuento), 0)
-    },
-
-    cambio() {
-      let cambio = 0
-      this.venta.saldada = false
-      if (this.venta.pago >= this.venta.total) {
-        this.venta.saldada = true
-        cambio = this.venta.pago - this.venta.total
-      }
-      return cambio
     }
   },
 
@@ -295,6 +294,12 @@ export default {
       this.venta.vendidos_attributes.map((p) => {
         p.subtotal = (p.cantidad * p.precio_venta) - p.descuento
       })
+    },
+
+    calcularCambio() {
+      if (this.venta.pagos_attributes[0].efectivo) {
+        this.venta.pagos_attributes[0].cambio = this.venta.pagos_attributes[0].efectivo - this.venta.pagos_attributes[0].anticipo
+      }
     },
 
     abrirBuscadorProductos() {

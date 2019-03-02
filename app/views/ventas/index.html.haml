@@ -27,7 +27,7 @@
               %td= estado_de_pago venta
               %td= l venta.fecha_entrega, format: :fecha
               %td= number_to_currency venta.total
-              %td= number_to_currency venta.pago
+              %td= number_to_currency venta.pagos.map(&:anticipo).reduce(0,:+)
               %td= venta.cliente
               %td
                 .btn-group

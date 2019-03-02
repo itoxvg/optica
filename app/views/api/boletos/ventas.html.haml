@@ -40,8 +40,12 @@
       %th.texto-der= number_to_currency @venta.total
     %tr
       %th{ colspan: 2}
-      %th pago
-      %th.texto-der= number_to_currency @venta.pago
+      %th anticipo
+      %th.texto-der= number_to_currency @venta.pagos.map(&:anticipo).reduce(0,:+)
+    %tr
+      %th{ colspan: 2}
+      %th debe
+      %th.texto-der= number_to_currency(@venta.total - @venta.pagos.map(&:anticipo).reduce(0,:+))
 
 .fila
   .col50

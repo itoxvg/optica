@@ -10,19 +10,39 @@
   .block-content
     %table.table.table-hover.table-sm.table-vcenter
       %tr
-        %th saldada:
-        %td= @venta.saldada
+        %th estado:
+        %td= estado_de_pago @venta
         %th cliente:
         %td= @venta.cliente
         %th fecha entrega:
         %td= l @venta.fecha_entrega, format: :fecha
+        %th fecha de compra:
+        %td= l @venta.created_at, format: :short
       %tr
         %th descuento:
         %td= number_to_currency @venta.descuento
         %th total:
         %td= number_to_currency @venta.total
+        %th anticipo:
+        %td= number_to_currency @venta.pagos.map(&:anticipo).reduce(0,:+)
+        %th debe:
+        %td.text-danger= number_to_currency(@venta.total - @venta.pagos.map(&:anticipo).reduce(0,:+))
+      %tr
         %th observaciones:
-        %td= @venta.observaciones
+        %td{ colspan: 7 }= @venta.observaciones
+
+    %h4.title.text-center
+      = pluralize(@venta.pagos.count, 'pago', 'pagos')
+    .table-responsive
+      %table.table.table-striped.table-hover.table-sm.table-vcenter.text-center
+        %tr
+          %th efectivo
+          %th anticipo
+          %th cambio
+          %th fecha de pago
+        %tbody
+          - @venta.pagos.each do |pago|
+            = render pago
 
     %h4.title.text-center
       = pluralize(@venta.vendidos.count, 'producto vendido', 'productos vendidos')

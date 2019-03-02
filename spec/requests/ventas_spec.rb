@@ -13,7 +13,6 @@ RSpec.describe "Ventas", type: :request do
 
   describe "GET /ventas" do
     it "returns ventas list" do
-      ventas
       get ventas_path
       expect(response).to have_http_status(200)
     end

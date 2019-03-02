@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_07_010755) do
+ActiveRecord::Schema.define(version: 2019_02_27_185118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,16 @@ ActiveRecord::Schema.define(version: 2019_02_07_010755) do
     t.string "telefono"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pagos", force: :cascade do |t|
+    t.money "efectivo", scale: 2, default: "0.0"
+    t.money "anticipo", scale: 2, default: "0.0"
+    t.money "cambio", scale: 2, default: "0.0"
+    t.bigint "venta_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["venta_id"], name: "index_pagos_on_venta_id"
   end
 
   create_table "productos", force: :cascade do |t|
@@ -81,7 +91,6 @@ ActiveRecord::Schema.define(version: 2019_02_07_010755) do
     t.datetime "fecha_entrega", default: -> { "now()" }
     t.money "descuento", scale: 2, default: "0.0"
     t.money "total", scale: 2, default: "0.0"
-    t.money "pago", scale: 2, default: "0.0"
     t.bigint "cliente_id"
     t.bigint "usuario_id"
     t.datetime "created_at", null: false
@@ -91,6 +100,7 @@ ActiveRecord::Schema.define(version: 2019_02_07_010755) do
     t.index ["usuario_id"], name: "index_ventas_on_usuario_id"
   end
 
+  add_foreign_key "pagos", "ventas"
   add_foreign_key "productos", "usuarios"
   add_foreign_key "vendidos", "productos"
   add_foreign_key "vendidos", "ventas"
