@@ -13,11 +13,16 @@ class ClientesController < ApplicationController
     end
   end
 
+  def new
+    @cliente = Cliente.new domicilio: Domicilio.new
+  end
+
   def create
     @cliente = Cliente.new(cliente_params)
 
     respond_to do |format|
       if @cliente.save
+        format.html { redirect_to @cliente, notice: 'El cliente fue creado correctamente' }
         format.json { render :show, status: :created, location: @cliente }
       else
         format.json { render json: @cliente.errors, status: :unprocessable_entity }

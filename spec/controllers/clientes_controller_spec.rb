@@ -30,6 +30,13 @@ RSpec.describe ClientesController, type: :controller do
     end
   end # describe "GET #show"
 
+  describe "GET #new" do
+    it "debe regresar una respuesta exitosa" do
+      get :new
+      expect(response).to be_successful
+    end
+  end # describe "GET #new"
+
   describe "POST #create" do
     context "con atributos validos" do
       it "debe crear un nuevo Cliente" do

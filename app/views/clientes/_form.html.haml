@@ -1,5 +1,5 @@
 -# frozen_string_literal: true
-= simple_form_for(@empresa) do |f|
+= simple_form_for(@cliente) do |f|
   .row
     .col-4
       = f.input :nombre
@@ -7,10 +7,6 @@
       = f.input :telefono
     .col-4
       = f.input :rfc
-    .col-6
-      = f.input :eslogan
-    .col-6
-      = f.input :logotipo
     .col-12
       %h4 registrar domicilio
       = render 'domicilios/domicilio_fields', f: f

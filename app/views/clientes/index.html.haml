@@ -4,6 +4,10 @@
       %i.fa.fa-users
       Lista de clientes
     .block-options
+      .block-options-item
+        = link_to [:new, :cliente], class: 'btn btn-alt-secondary' do
+          %i.fa.fa-plus
+          registrar cliente
   .block-content
     .table-responsive
       %table.table.table-striped.table-hover.table-sm.table-vcenter

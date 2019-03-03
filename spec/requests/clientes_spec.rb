@@ -31,6 +31,13 @@ RSpec.describe "Clientes", type: :request do
     end
   end # describe "GET /clientes/:id"
 
+  describe "GET /clientes/new" do
+    it "debe regresar una respuesta exitosa" do
+      get new_cliente_path
+      expect(response).to have_http_status 200
+    end
+  end # describe "GET /clientes/new"
+
   describe "POST /clientes" do
     context "con parámetros válidos" do
       it "debe regresa una respuesta exitosa" do
