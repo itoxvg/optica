@@ -1,0 +1,20 @@
+.block.block-themed
+  .block-header.bg-primary-dark
+    %h3.block-title
+      %i.fa.fa-users
+      Lista de clientes
+    .block-options
+  .block-content
+    .table-responsive
+      %table.table.table-striped.table-hover.table-sm.table-vcenter
+        %thead
+          %tr
+            %th nombre
+            %th rfc
+            %th telefono
+        %tbody
+          - @clientes.each do |cliente|
+            %tr
+              %td= cliente.nombre
+              %td= cliente.rfc
+              %td= cliente.telefono

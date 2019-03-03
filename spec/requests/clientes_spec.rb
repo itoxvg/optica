@@ -10,6 +10,13 @@ RSpec.describe "Clientes", type: :request do
     sign_in vendedor
   end
 
+  describe "GET /clientes" do
+    it "debe regresar una respuesta exitosa" do
+      get clientes_path
+      expect(response).to have_http_status 200
+    end
+  end # describe "GET /clientes"
+
   describe "GET /clientes/:id" do
     let(:cliente) { create :cliente }
 

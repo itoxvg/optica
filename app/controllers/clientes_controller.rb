@@ -1,5 +1,9 @@
 class ClientesController < ApplicationController
 
+  def index
+    @clientes = Cliente.page(params[:page])
+  end
+
   def show
     @cliente = Cliente.find(params[:id])
 
