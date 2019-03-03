@@ -15,6 +15,13 @@
         %th telefono:
         %td= @cliente.telefono
       %tr
+        %th compras realizadas:
+        %td= @cliente.ventas.count
+        %th registrado el:
+        %td= l @cliente.created_at, format: :long
+        %th actualizado el:
+        %td= l @cliente.updated_at, format: :long
+      %tr
         %th calle:
         %td= @cliente.calle
         %th número

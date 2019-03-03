@@ -2,7 +2,7 @@ class ClientesController < ApplicationController
   before_action :set_cliente, only: [:show, :edit, :update]
 
   def index
-    @clientes = Cliente.page(params[:page])
+    @clientes = Cliente.recientes_primero.page(params[:page])
   end
 
   def show
