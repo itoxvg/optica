@@ -4,16 +4,16 @@ RSpec.describe "empresas/index", type: :view do
   before(:each) do
     assign(:empresas, [
       Empresa.create!(
-        :nombre => "Nombre",
-        :rfc => "Rfc",
-        :eslogan => "Eslogan",
-        :logotipo => "Logotipo"
+        nombre: "Nombre",
+        rfc: "Rfc",
+        eslogan: "Eslogan",
+        logotipo: FactoryBotHelpers.subir_archivo(nombre: 'opticajj.jpg', formato: 'jpg')
       ),
       Empresa.create!(
-        :nombre => "Nombre",
-        :rfc => "Rfc",
-        :eslogan => "Eslogan",
-        :logotipo => "Logotipo"
+        nombre: "Nombre",
+        rfc: "Rfc",
+        eslogan: "Eslogan",
+        logotipo: FactoryBotHelpers.subir_archivo(nombre: 'opticajj.jpg', formato: 'jpg')
       )
     ])
   end

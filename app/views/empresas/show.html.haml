@@ -37,8 +37,9 @@
         %td= @empresa.pais
       %tr
         %th logotipo:
-        %td= @empresa.logotipo
-        %td{ colspan: 4 }
+        %td{ colspan: 5 }
+          - if @empresa.logotipo?
+            = image_tag(@empresa.logotipo.chico.url, class: "img-thumbnail")
 
   .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
     = link_to [:empresas], class: 'btn btn-alt-secondary' do
