@@ -1,24 +1,31 @@
-# README
+OPTICA
+======
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Es un punto de venta de lentes, armazones, micas y tratamientos.
 
-Things you may want to cover:
+## Requisitos
+  * ruby 2.6.1
+  * rails 5.2.2
+  * postgres
 
-* Ruby version
+## Instalación
+```sh
+git clone https://github.com/JuanVqz/optica.git
+cd optica
+bundle install
+```
 
-* System dependencies
+## Ejecutar la aplicación
+```sh
+rails db:create
+rails db:migrate
+rails db:seed
+rails serve
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Ejecutar las pruebas
+```sh
+rails db:test:load
+rails db:test:prepare
+rake
+```
