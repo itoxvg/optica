@@ -7,6 +7,7 @@ Es un punto de venta de lentes, armazones, micas y tratamientos.
   * ruby 2.6.1
   * rails 5.2.2
   * postgres
+  * [minimagick](https://github.com/minimagick/minimagick)
 
 ## Instalación
 ```sh
