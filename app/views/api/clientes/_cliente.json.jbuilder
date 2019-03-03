@@ -1,3 +1,3 @@
-json.extract! cliente, :id, :nombre, :telefono
+json.extract! cliente, :id, :nombre, :telefono, :rfc
 
 json.set! :domicilio_attributes, cliente.domicilio

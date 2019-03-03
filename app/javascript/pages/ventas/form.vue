@@ -194,13 +194,23 @@
                     <div class="invalid-feedback" v-if="errores.nombre">{{ errores.nombre[0] }}</div>
                   </div>
                 </div>
-                <div class="col-6">
+                <div class="col-3">
                   <div class="form-group">
                     <label for="cliente_telefono">
                       telefono
                     </label>
                     <input type="text" v-model="cliente.telefono"
                       id="cliente_telefono"
+                      class="form-control" autocomplete="off"/>
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group">
+                    <label for="cliente_rfc">
+                      RFC
+                    </label>
+                    <input type="text" v-model="cliente.rfc"
+                      id="cliente_rfc"
                       class="form-control" autocomplete="off"/>
                   </div>
                 </div>
@@ -428,9 +438,11 @@ export default {
             params.page = params.page || 1
 
             let items = data.items.map((item) => {
+              let rfc = item.rfc ? `| ${item.rfc}` : ''
+
               return {
                 id: JSON.stringify(item),
-                text: item.nombre
+                text: `${item.nombre} ${rfc}`
               }
             })
 
