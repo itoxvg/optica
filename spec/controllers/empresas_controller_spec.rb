@@ -3,7 +3,8 @@ require 'rails_helper'
 RSpec.describe EmpresasController, type: :controller do
 
   let(:vendedor) { create :vendedor }
-  let(:valid_attributes) { attributes_for :empresa }
+  let(:domicilio) { attributes_for :domicilio }
+  let(:valid_attributes) { attributes_for :empresa, domicilio_attributes: domicilio }
   let(:invalid_attributes) { attributes_for :empresa, nombre: nil }
 
   before :each do
@@ -47,6 +48,12 @@ RSpec.describe EmpresasController, type: :controller do
         expect {
           post :create, params: {empresa: valid_attributes}
         }.to change(Empresa, :count).by(1)
+      end
+
+      it "debe crear un nuevo Domicilio" do
+        expect {
+          post :create, params: {empresa: valid_attributes}
+        }.to change(Domicilio, :count).by(1)
       end
 
       it "redirige a la empresa creada" do

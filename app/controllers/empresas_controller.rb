@@ -9,7 +9,7 @@ class EmpresasController < ApplicationController
   end
 
   def new
-    @empresa = Empresa.new
+    @empresa = Empresa.new domicilio: Domicilio.new
   end
 
   def edit
@@ -45,6 +45,10 @@ class EmpresasController < ApplicationController
   end
 
   def empresa_params
-    params.require(:empresa).permit(:nombre, :telefono, :rfc, :eslogan, :logotipo)
+    params.require(:empresa).permit(
+      :nombre, :telefono, :rfc, :eslogan, :logotipo,
+      domicilio_attributes: [:id, :calle, :numero, :colonia, :codigo_postal,
+                             :municipio, :estado, :pais]
+    )
   end
 end
