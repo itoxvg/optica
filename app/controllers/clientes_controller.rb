@@ -1,20 +1,18 @@
 class ClientesController < ApplicationController
+  before_action :set_cliente, only: [:show, :edit, :update]
 
   def index
     @clientes = Cliente.page(params[:page])
   end
 
   def show
-    @cliente = Cliente.find(params[:id])
-
-    respond_to do |format|
-      format.html
-      format.json { render :show, status: :ok, location: @cliente.to_json }
-    end
   end
 
   def new
     @cliente = Cliente.new domicilio: Domicilio.new
+  end
+
+  def edit
   end
 
   def create
@@ -30,7 +28,19 @@ class ClientesController < ApplicationController
     end
   end
 
+  def update
+    if @cliente.update(cliente_params)
+      redirect_to @cliente, notice: 'El cliente fue actualiza correctamente'
+    else
+      render :edit
+    end
+  end
+
   private
+
+  def set_cliente
+    @cliente = Cliente.find(params[:id])
+  end
 
   def cliente_params
     params.require(:cliente).permit(
