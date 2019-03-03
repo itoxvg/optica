@@ -1,4 +1,6 @@
 class Cliente < ApplicationRecord
+  include Domiciliable
+
   has_many :ventas
 
   validates :nombre, presence: true
