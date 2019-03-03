@@ -31,12 +31,12 @@
               %td= venta.cliente
               %td
                 .btn-group
+                  = link_to ventas_api_boleto_path(venta), class: 'btn btn-alt-secondary', target: '_blank' do
+                    %i.fa.fa-print
                   = link_to venta, class: 'btn btn-alt-info' do
                     %i.si.si-eye
-                    detalles
                   = link_to [:edit, venta], class: 'btn btn-alt-warning' do
                     %i.si.si-pencil
-                    editar
     %tfoot
       %tr
         %td{ colspan: 6 }
