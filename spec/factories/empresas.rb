@@ -4,6 +4,8 @@ FactoryBot.define do
     telefono { "MyString" }
     rfc { "MyString" }
     eslogan { "MyString" }
-    logotipo { "MyString" }
+    logotipo {
+      FactoryBotHelpers.subir_archivo(nombre: 'opticajj.jpg', formato: 'jpg')
+    }
   end
 end
