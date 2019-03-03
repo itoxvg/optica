@@ -21,6 +21,11 @@ RSpec.describe "Clientes", type: :request do
     let(:cliente) { create :cliente }
 
     it "debe regresar una respuesta exitosa" do
+      get cliente_path cliente
+      expect(response).to have_http_status 200
+    end
+
+    it "debe regresar una respuesta exitosa en json" do
       get cliente_path cliente, params: { format: :json }
       expect(response).to have_http_status 200
     end

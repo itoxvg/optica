@@ -14,6 +14,22 @@ RSpec.describe ClientesController, type: :controller do
     sign_in vendedor
   end
 
+  describe "GET #index" do
+    it "debe regresar una respuesta exitosa" do
+      Cliente.create! valid_attributes
+      get :index
+      expect(response).to be_successful
+    end
+  end # describe "GET #index"
+
+  describe "GET #show" do
+    it "debe regresar una respuesta exitosa" do
+      cliente = Cliente.create! valid_attributes
+      get :show, params: { id: cliente.to_param }
+      expect(response).to be_successful
+    end
+  end # describe "GET #show"
+
   describe "POST #create" do
     context "con atributos validos" do
       it "debe crear un nuevo Cliente" do

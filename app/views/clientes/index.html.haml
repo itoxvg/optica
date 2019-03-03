@@ -12,9 +12,15 @@
             %th nombre
             %th rfc
             %th telefono
+            %th.text-center{:style => "width: 100px;"} Acciones
         %tbody
           - @clientes.each do |cliente|
             %tr
               %td= cliente.nombre
               %td= cliente.rfc
               %td= cliente.telefono
+              %td
+                .btn-group
+                  = link_to cliente, class: 'btn btn-alt-info' do
+                    %i.si.si-eye
+                    detalles

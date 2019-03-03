@@ -1,0 +1,35 @@
+.block.block-themed
+  .block-header.bg-primary-dark
+    %h3.block-title
+      %i.si.si-eye
+      detalles del cliente #{@cliente}
+    .block-options
+      .block-options-item
+  .block-content
+    %table.table.table-hover.table-sm.table-vcenter
+      %tr
+        %th nombre:
+        %td= @cliente
+        %th RFC:
+        %td= @cliente.rfc
+        %th telefono:
+        %td= @cliente.telefono
+      %tr
+        %th calle:
+        %td= @cliente.calle
+        %th número
+        %td= "##{@cliente.numero}"
+        %th colonia:
+        %td= @cliente.colonia
+      %tr
+        %th código postal:
+        %td= @cliente.codigo_postal
+        %th estado:
+        %td= @cliente.estado
+        %th país:
+        %td= @cliente.pais
+
+  .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
+    = link_to [:clientes], class: 'btn btn-alt-secondary' do
+      %i.si.si-arrow-left
+      regresar
