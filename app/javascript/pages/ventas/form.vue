@@ -284,9 +284,7 @@ export default {
         vendidos_attributes: [],
       },
       cliente: {
-        domicilio_attributes: {
-          estado: "Oaxaca"
-        }
+        domicilio_attributes: {}
       },
       errores: {}
     }
@@ -307,6 +305,7 @@ export default {
     })
 
     window.$('#registrar-cliente').on('shown.bs.modal', (e) => {
+      this.cliente = {domicilio_attributes: {}}
       setTimeout(() => {
         window.$('#cliente_nombre').focus()
         window.$('#cliente_nombre').select()
