@@ -2,7 +2,7 @@ class VendedoresController < ApplicationController
   before_action :set_vendedor, only: [:show, :edit, :update]
 
   def index
-    @vendedores = Vendedor.recientes_primero
+    @vendedores = Vendedor.recientes_primero.page(params[:page])
   end
 
   def show

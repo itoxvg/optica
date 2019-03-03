@@ -20,3 +20,12 @@
               = link_to [:edit, usuario], class: 'btn btn-alt-warning' do
                 %i.si.si-pencil
                 editar
+    %tfoot
+      %tr
+        %td{ colspan: 6 }
+          .row
+            .col-6
+              = paginate usuarios
+            .col-6
+              .pull-right
+                = page_entries_info usuarios
