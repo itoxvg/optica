@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2019_03_02_230725) do
   create_table "clientes", force: :cascade do |t|
     t.string "nombre", default: "", null: false
     t.string "telefono"
+    t.string "rfc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
