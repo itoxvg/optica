@@ -46,7 +46,7 @@ class EmpresasController < ApplicationController
 
   def empresa_params
     params.require(:empresa).permit(
-      :nombre, :telefono, :rfc, :eslogan, :logotipo,
+      :nombre, :telefono, :rfc, :eslogan, :logotipo, :logotipo_cache,
       domicilio_attributes: [:id, :calle, :numero, :colonia, :codigo_postal,
                              :municipio, :estado, :pais]
     )

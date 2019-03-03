@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe "empresas/edit", type: :view do
   before(:each) do
     @empresa = assign(:empresa, Empresa.create!(
-      :nombre => "MyString",
-      :rfc => "MyString",
-      :eslogan => "MyString",
-      :logotipo => "MyString"
+        nombre: "Nombre",
+        rfc: "Rfc",
+        eslogan: "Eslogan",
+        logotipo: FactoryBotHelpers.subir_archivo(nombre: 'opticajj.jpg', formato: 'jpg')
     ))
   end
 
