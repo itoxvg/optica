@@ -11,6 +11,23 @@
       = f.input :eslogan
     .col-6
       = f.input :logotipo
+    .col-12
+      %h4 Domicilio
+      %hr
+      = f.simple_fields_for :domicilio do |fd|
+        .row
+          .col-4
+            = fd.input :calle
+          .col-4
+            = fd.input :numero
+          .col-4
+            = fd.input :colonia
+          .col-4
+            = fd.input :codigo_postal
+          .col-4
+            = fd.input :municipio
+          .col-4
+            = fd.input :estado, collection: opciones_de_estados
 
     .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
       = f.submit class: 'btn btn-alt-primary'

@@ -22,10 +22,23 @@
         %th eslogan:
         %td= @empresa.eslogan
       %tr
+        %th calle:
+        %td= @empresa.calle
+        %th número
+        %td= "##{@empresa.numero}"
+        %th colonia:
+        %td= @empresa.colonia
+      %tr
+        %th código postal:
+        %td= @empresa.codigo_postal
+        %th estado:
+        %td= @empresa.estado
+        %th país:
+        %td= @empresa.pais
+      %tr
         %th logotipo:
         %td= @empresa.logotipo
-        %th
-        %td{ colspan: 3 }
+        %td{ colspan: 4 }
 
   .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
     = link_to [:empresas], class: 'btn btn-alt-secondary' do
