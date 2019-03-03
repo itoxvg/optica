@@ -6,6 +6,7 @@
         %th nombre
         %th existencias
         %th tipo
+        %th actualizado el
         %th.text-center{:style => "width: 100px;"} Acciones
     %tbody
       - productos.each do |producto|
@@ -14,6 +15,7 @@
           %td= producto.nombre
           %td= producto.existencia
           %td= producto.tipo
+          %td= l producto.updated_at, format: :long
           %td
             .btn-group
               = link_to producto, class: 'btn btn-alt-info' do

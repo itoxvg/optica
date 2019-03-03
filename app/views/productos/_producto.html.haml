@@ -19,3 +19,8 @@
     %td= number_to_currency producto.precio_compra
     %th registrado por:
     %td= producto.usuario
+  %tr
+    %th registrado el:
+    %td= l producto.created_at, format: :long
+    %th actualizado el:
+    %td= l producto.updated_at, format: :long
