@@ -205,6 +205,43 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-9">
+                  <div class="form-group">
+                    <label for="cliente_calle"> calle </label>
+                    <input type="text" v-model="cliente.domicilio_attributes.calle"
+                      id="cliente_calle" class="form-control" />
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group">
+                    <label for="cliente_numero"> número </label>
+                    <input type="text" v-model="cliente.domicilio_attributes.numero"
+                      id="cliente_numero" class="form-control" />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="cliente_colonia"> colonia </label>
+                    <input type="text" v-model="cliente.domicilio_attributes.colonia"
+                      id="cliente_colonia" class="form-control" />
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group">
+                    <label for="cliente_municipio"> municipio </label>
+                    <input type="text" v-model="cliente.domicilio_attributes.municipio"
+                      id="cliente_municipio" class="form-control" />
+                  </div>
+                </div>
+                <div class="col-3">
+                  <div class="form-group">
+                    <label for="cliente_codigo_postal"> código postal </label>
+                    <input type="text" v-model="cliente.domicilio_attributes.codigo_postal"
+                      id="cliente_codigo_postal" class="form-control" />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
@@ -236,7 +273,11 @@ export default {
         ],
         vendidos_attributes: [],
       },
-      cliente: {},
+      cliente: {
+        domicilio_attributes: {
+          estado: "Oaxaca"
+        }
+      },
       errores: {}
     }
   },
