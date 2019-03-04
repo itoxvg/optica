@@ -17,12 +17,20 @@ Vue.filter('dinero', (value) => {
 })
 
 import VentasNew from '../pages/ventas/new'
+import VentasEdit from '../pages/ventas/edit'
 
 document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('venta-new')) {
     const app = new Vue({
       el: '#venta-new',
       render: h => h(VentasNew)
+    })
+  }
+
+  if (document.getElementById('venta-edit')) {
+    const app = new Vue({
+      el: '#venta-edit',
+      render: h => h(VentasEdit)
     })
   }
 })

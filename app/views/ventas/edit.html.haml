@@ -2,8 +2,8 @@
   .block-header.bg-primary-dark
     %h3.block-title
       %i.si.si-pencil
-      modificar venta
+      modificar venta #{@venta.codigo}
     .block-options
       .block-options-item
   .block-content
-    = render 'form'
+    #venta-edit
