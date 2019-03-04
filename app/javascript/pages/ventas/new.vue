@@ -1,5 +1,5 @@
 <template>
-  <div id="ventas-form">
+  <div id="venta-new">
     <form @submit.prevent="vender">
       <div class="row">
         <div class="col-4">
@@ -270,7 +270,7 @@
 
 <script>
 export default {
-  name: 'ventas-form',
+  name: 'venta-new',
 
   data() {
     return {

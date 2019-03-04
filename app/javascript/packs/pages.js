@@ -16,13 +16,13 @@ Vue.filter('dinero', (value) => {
   return formatter.format(value)
 })
 
-import VentasForm from '../pages/ventas/form.vue'
+import VentasNew from '../pages/ventas/new'
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (document.getElementById('ventas-form')) {
+  if (document.getElementById('venta-new')) {
     const app = new Vue({
-      el: '#ventas-form',
-      render: h => h(VentasForm)
+      el: '#venta-new',
+      render: h => h(VentasNew)
     })
   }
 })
