@@ -1,4 +1,5 @@
 require 'barby/barcode/ean_13'
+require 'barby/barcode/code_128'
 require 'barby/outputter/svg_outputter'
 
 class Codigo::Barras
@@ -10,10 +11,25 @@ class Codigo::Barras
   end
 
   def convertir
-    formato_svg Barby::EAN13.new(eliminar_checksum)
+    codigo = es_venta? ? codigo_de_venta : codigo_de_producto
+    formato_svg codigo
   end
 
-  def eliminar_checksum
+  private
+
+  def es_venta?
+    modelo.is_a?Venta
+  end
+
+  def codigo_de_producto
+    Barby::Code128B.new(modelo.codigo)
+  end
+
+  def codigo_de_venta
+    Barby::EAN13.new(eliminar_checksum!)
+  end
+
+  def eliminar_checksum!
     modelo.codigo.chop!
   end
 
