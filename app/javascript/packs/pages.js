@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import axios from 'axios'
 
-axios.defaults.baseURL = window.location.origin
-axios.defaults.headers.post['Content-Type'] = 'application/json'
-axios.defaults.headers.post['Accept'] = 'application/json'
-axios.defaults.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-Vue.prototype.$http = axios
+axios.defaults.baseURL                        = window.location.origin
+axios.defaults.headers.get['Content-Type']    = 'application/json'
+axios.defaults.headers.get['Accept']          = 'application/json'
+axios.defaults.headers.post['Content-Type']   = 'application/json'
+axios.defaults.headers.post['Accept']         = 'application/json'
+axios.defaults.headers.common['X-CSRF-Token'] = document
+  .querySelector('meta[name = "csrf-token"]').getAttribute('content')
+Vue.prototype.$http                           = axios
 
 Vue.filter('dinero', (value) => {
   let formatter = new Intl.NumberFormat('en-US', {
