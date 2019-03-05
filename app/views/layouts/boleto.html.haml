@@ -40,12 +40,15 @@
       .espacio-arriba { padding-top: 5px; }
 
   %body
-    .contenido
+    .contenido.texto-centro
       .linea
+        .fila= image_tag(empresa_actual.logotipo.chico.url)
+        .fila
+          .col50= empresa_actual.telefono
+          .col50= empresa_actual.rfc
+          %pre= empresa_actual.domicilio
       = yield
-
-      .texto-min.texto-centro
-        impresión ticket #{l Time.current, format: :long }
+      .texto-min impresión ticket #{l Time.current, format: :long }
       .linea
 
     :javascript
