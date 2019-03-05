@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
     resources :clientes, only: :index
     resources :productos, only: :index
+    resources :ventas, only: :show
   end
 
   resources :armazones
