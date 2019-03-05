@@ -48,6 +48,10 @@
             <input type="text" v-model="venta.deuda" id="venta_deuda" class="form-control" readonly/>
           </div>
         </div>
+
+        <div class="col-md-12 text-center">
+          <cargando-component :cargando="cargando"/>
+        </div>
       </div>
 
       <h5 class="text-center" v-if="venta.vendidos_attributes">
@@ -104,7 +108,8 @@ export default {
 
   data() {
     return {
-      venta: {}
+      venta: {},
+      cargando: false
     }
   },
 
@@ -149,8 +154,12 @@ export default {
     obtenerVenta() {
       let id = parseInt(window.location.href.split('/')[4])
 
+      this.cargando = true
       this.$http.get(`/api/ventas/${id}`)
-        .then(response => this.venta = response.data)
+        .then(response => {
+          this.venta    = response.data
+          this.cargando = false
+        })
         .catch(err => console.log(err))
     }
   }
