@@ -7,4 +7,7 @@ class Vendido < ApplicationRecord
 
   validates :cantidad, :precio_venta, :precio_compra,
     :subtotal, numericality: { greater_than: 0 }
+
+  delegate :nombre, :codigo, :tipo, to: :producto, prefix: false,
+    allow_nil: true
 end
