@@ -1,13 +1,8 @@
-.fila.texto-min
-  .col30.texto-centro= @venta.codigo
-  .col70.texto-der= l @venta.created_at, format: :long
-.fila.espacio-arriba
-  .col50
-    %strong vendedor
-    %br= @venta.usuario
-  .col50
-    %strong cliente
-    %br= @venta.cliente
+.fila
+  .col50.texto-izq= @venta.codigo
+  .col50.texto-der= l @venta.created_at, format: :short
+  .col30.texto-izq= @venta.usuario
+  .col70.texto-der= @venta.cliente
 
 .espacio-arriba.espacio-abajo
   .texto-centro TICKET DE VENTA
@@ -39,18 +34,17 @@
       %th total
       %th.texto-der= number_to_currency @venta.total
     %tr
-      %th{ colspan: 2}
+      %th{ colspan: 2 }
       %th anticipo
       %th.texto-der= number_to_currency @venta.suma_anticipos
     %tr
-      %th{ colspan: 2}
+      %th{ colspan: 2 }
       %th deuda
       %th.texto-der= number_to_currency @venta.deuda
 
 .fila
+  .col50= codigo_de_barras(@venta)
   .col50
-    = codigo_de_barras(@venta)
-  .col50.texto-centro
     fecha de entrega
-    = l @venta.fecha_entrega, format: :fecha
+    %br= l @venta.fecha_entrega, format: :fecha
 
