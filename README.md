@@ -1,3 +1,5 @@
+[![Build Status](https://semaphoreci.com/api/v1/projects/b73bdec0-2d88-4ce0-aa85-91a8e559cef9/2550590/badge.svg)](https://semaphoreci.com/itox/optica)
+
 OPTICA
 ======
 
