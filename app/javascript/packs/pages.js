@@ -19,6 +19,10 @@ Vue.filter('dinero', (value) => {
   return formatter.format(value)
 })
 
+import CargandoComponent from '../components/CargandoComponent'
+
+Vue.component('cargando-component', CargandoComponent)
+
 import VentasNew from '../pages/ventas/new'
 import VentasEdit from '../pages/ventas/edit'
 
