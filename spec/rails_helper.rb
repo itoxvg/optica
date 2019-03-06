@@ -91,8 +91,4 @@ Shoulda::Matchers.configure do |config|
 
 end
 
-Capybara.current_driver = :selenium
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
-end
 Chromedriver.set_version "2.46"
