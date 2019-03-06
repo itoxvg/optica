@@ -28,6 +28,9 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.9'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
+  gem 'capybara'
+  gem 'selenium-webdriver'
+  gem 'chromedriver-helper'
 end
 
 group :development do
