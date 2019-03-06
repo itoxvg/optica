@@ -1,3 +1,10 @@
 .bg-image {
   background-image: url(/packs/assets/images/optica-2a0807b1b1c66282360a6858aa489ed8.jpg)
 }
+
+.alerta {
+  position: absolute;
+  right: 20px;
+  top: 70px;
+  z-index: 999;
+}

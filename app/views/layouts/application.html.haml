@@ -16,6 +16,7 @@
       = render 'layouts/partials/navbar'
       / Main Container
       %main#main-container{:style => "min-height: 783px;"}
+        = render 'layouts/partials/alerts'
         .content
           = yield
       / END Main Container
