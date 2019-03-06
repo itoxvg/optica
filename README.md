@@ -10,12 +10,16 @@ Es un punto de venta de lentes, armazones, micas y tratamientos.
   * rails 5.2.2
   * postgres
   * [minimagick](https://github.com/minimagick/minimagick)
+  * node 11.1.0
+  * yarn 1.13.0
 
 ## Instalación
 ```sh
 git clone https://github.com/JuanVqz/optica.git
 cd optica
 bundle install
+
+yarn install
 ```
 
 ## Ejecutar la aplicación
@@ -23,7 +27,13 @@ bundle install
 rails db:create
 rails db:migrate
 rails db:seed
+
+// iniciar dos procesos
 rails serve
+./bin/webpack-dev-server
+
+// ó usar foreman
+foreman start
 ```
 
 ## Ejecutar las pruebas
