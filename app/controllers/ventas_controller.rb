@@ -29,10 +29,14 @@ class VentasController < ApplicationController
   end
 
   def update
-    if @venta.update(venta_params)
-      redirect_to @venta, notice: 'La venta fue actualizado correctamente'
-    else
-      render :edit
+    respond_to do |format|
+      if @venta.update(venta_params)
+        format.html { redirect_to @venta, notice: 'La venta fue actualizado correctamente' }
+        format.json { render :show, status: :ok, location: @venta }
+      else
+        format.html { render :edit }
+        format.json { render json: @venta.errors, status: :unprocessable_entity }
+      end
     end
   end
 

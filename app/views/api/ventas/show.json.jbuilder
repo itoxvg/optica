@@ -6,3 +6,6 @@ json.set! :deuda, @venta.deuda
 json.vendidos_attributes do
   json.array! @venta.vendidos, partial: 'vendidos/vendido', as: :vendido
 end
+json.pagos_attributes do
+  json.array! [@venta.pagos.build], partial: 'pagos/pago', as: :pago
+end
