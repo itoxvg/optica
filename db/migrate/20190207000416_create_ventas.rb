@@ -7,6 +7,8 @@ class CreateVentas < ActiveRecord::Migration[5.2]
       t.timestamp :fecha_entrega, default: -> { 'NOW()' }
       t.money :descuento, default: 0
       t.money :total, default: 0
+      t.string :forma_de_pago
+      t.string :moneda, default: "MXN"
       t.references :cliente, foreign_key: true
       t.references :usuario, foreign_key: { to_table: :usuarios }
 
