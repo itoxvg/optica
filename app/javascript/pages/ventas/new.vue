@@ -2,7 +2,7 @@
   <div id="venta-new">
     <form @submit.prevent="vender">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <div class="form-group">
             <label for="fecha_entrega">
               Fecha entrega <span class="text-danger">*</span>
@@ -13,13 +13,28 @@
           </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="col-md-4">
+          <div class="form-group" :class="errores.forma_de_pago ? 'is-invalid' : ''">
+            <label for="forma_de_pago" class="form-control-label">
+              Forma de pago <span class="text-danger">*</span>
+            </label>
+            <select v-model="venta.forma_de_pago" id="forma_de_pago"
+              class="form-control">
+              <option v-for="fp in formas_de_pago">{{ fp }}</option>
+            </select>
+            <div class="invalid-feedback" v-if="errores.forma_de_pago">
+              {{ errores.forma_de_pago[0] }}
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-5">
           <div class="form-group" :class="errores.cliente ? 'is-invalid' : ''">
             <label for="buscar-clientes" class="form-control-label">
               Seleccionar cliente <span class="text-danger">*</span>
             </label>
             <select id="buscar-clientes" class="form-control"></select>
-              <div class="invalid-feedback" v-if="errores.cliente">{{ errores.cliente[0] }}</div>
+            <div class="invalid-feedback" v-if="errores.cliente">{{ errores.cliente[0] }}</div>
           </div>
         </div>
 
@@ -282,10 +297,18 @@ export default {
           { efectivo: 0, anticipo: 0, cambio: 0 }
         ],
         vendidos_attributes: [],
+        forma_de_pago: ''
       },
       cliente: {
         domicilio_attributes: {}
       },
+      formas_de_pago: [
+        '01 - Efectivo',
+        '02 - Cheque nominativo',
+        '03 - Transferencia electrónica de fondos',
+        '04 - Tarjeta de crédito',
+        '28 - Tarjeta de débito'
+      ],
       errores: {}
     }
   },

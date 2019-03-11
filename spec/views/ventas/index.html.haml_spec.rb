@@ -12,6 +12,7 @@ RSpec.describe "ventas/index", type: :view do
         saldada: true,
         fecha_entrega: "2019-02-27 00:00:00",
         total: 1,
+        forma_de_pago: '01',
         cliente: cliente,
         usuario: vendedor
       ),
@@ -20,6 +21,7 @@ RSpec.describe "ventas/index", type: :view do
         saldada: true,
         fecha_entrega: "2019-02-27 00:00:00",
         total: 1,
+        forma_de_pago: '02',
         cliente: cliente,
         usuario: vendedor
       )
