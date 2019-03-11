@@ -6,6 +6,7 @@ FactoryBot.define do
     fecha_entrega { "2019-02-06 18:04:16" }
     descuento { 0 }
     total { 1 }
+    forma_de_pago { ['01', '02', '03', '04', '28'].sample }
     cliente
     association :usuario, factory: :vendedor
 

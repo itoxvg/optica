@@ -14,7 +14,7 @@ class Venta < ApplicationRecord
   accepts_nested_attributes_for :vendidos
   accepts_nested_attributes_for :pagos
 
-  validates :cliente, :fecha_entrega, presence: true
+  validates :cliente, :fecha_entrega, :forma_de_pago, presence: true
   validates :total, numericality: { greater_than: 0 }
 
   scope :con_cliente, -> { includes(:cliente) }
