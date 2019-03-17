@@ -12,15 +12,15 @@ module System
       create :vendedor
     end
 
-    def cuando_admin_inicia_sesion(admin=crear_admin)
+    def cuando_admin_inicia_sesion(admin=crear_administrador)
       cuando_visita_el_inicio_de_sesion
       cuando_ingresa_credenciales admin
       cuando_hace_click_en_el_boton_iniciar_sesion
       espero_ver_el_nombre_de_usuario
     end
 
-    def crear_admin
-      create :admin
+    def crear_administrador
+      create :administrador
     end
 
     def cuando_ingresa_credenciales usuario

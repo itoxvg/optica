@@ -16,8 +16,8 @@ RSpec.describe "usuario registrado puede iniciar sesion", type: :system do
     end
   end # context vendedor
 
-  feature "cuando es admin" do
-    given(:admin) { build :admin, email: 'noexiste@gmail.com' }
+  feature "cuando es administrador" do
+    given(:admin) { build :administrador, email: 'noexiste@gmail.com' }
 
     scenario "con credenciales validas" do
       cuando_admin_inicia_sesion
