@@ -33,6 +33,7 @@ rails serve
 ./bin/webpack-dev-server
 
 // ó usar foreman
+cp .env.example .env
 foreman start
 ```
 
