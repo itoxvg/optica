@@ -37,8 +37,9 @@
                     %i.fa.fa-print
                   = link_to venta, class: 'btn btn-alt-info' do
                     %i.si.si-eye
-                  = link_to [:edit, venta], class: 'btn btn-alt-warning' do
-                    %i.si.si-pencil
+                  - if puede?(:deuda, venta)
+                    = link_to [:edit, venta], class: 'btn btn-alt-warning' do
+                      %i.si.si-pencil
     %tfoot
       %tr
         %td{ colspan: 6 }

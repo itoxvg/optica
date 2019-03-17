@@ -70,6 +70,7 @@
       = link_to ventas_api_boleto_path(@venta), class: 'btn btn-alt-secondary', target: '_blank' do
         %i.fa.fa-print
         imprimir
-      = link_to [:edit, @venta], class: 'btn btn-alt-warning' do
-        %i.si.si-pencil
-        editar
+      - if puede?(:deuda, @venta)
+        = link_to [:edit, @venta], class: 'btn btn-alt-warning' do
+          %i.si.si-pencil
+          editar
