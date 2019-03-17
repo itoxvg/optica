@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2019_03_11_152025) do
     t.string "rfc"
     t.string "eslogan"
     t.string "logotipo"
+    t.string "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
