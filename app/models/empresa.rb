@@ -2,7 +2,7 @@ class Empresa < ApplicationRecord
   include Domiciliable
   mount_uploader :logotipo, LogotipoUploader
 
-  validates :nombre, :logotipo, presence: true
+  validates :nombre, presence: true
 
   def to_s
     nombre

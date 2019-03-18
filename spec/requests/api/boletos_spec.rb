@@ -2,12 +2,10 @@ require 'rails_helper'
 
 RSpec.describe "Boletos", type: :request do
 
-  let!(:empresa) { create :empresa }
+  let!(:tienda) { create :tienda }
   let(:vendedor) { create :vendedor }
 
-  before :each do
-    sign_in vendedor
-  end
+  before { sign_in vendedor }
 
   describe "GET /api/boletos/:id/ventas" do
     let(:venta) { create :venta, usuario: vendedor }

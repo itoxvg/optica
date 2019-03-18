@@ -1,5 +1,5 @@
 -# frozen_string_literal: true
-= simple_form_for(@empresa) do |f|
+= simple_form_for(@tienda) do |f|
   .row
     .col-md-3
       = f.input :nombre
@@ -10,8 +10,8 @@
     .col-md-3
       = f.input :eslogan
     .col-md-3
-      - if @empresa.logotipo?
-        = image_tag(@empresa.logotipo_url, class: "img-thumbnail")
+      - if @tienda.logotipo?
+        = image_tag(@tienda.logotipo_url, class: "img-thumbnail")
       = f.input :logotipo
       = f.hidden_field :logotipo_cache
     .col-md-12
@@ -20,3 +20,4 @@
 
     .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
       = f.submit class: 'btn btn-alt-primary'
+

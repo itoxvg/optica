@@ -12,7 +12,7 @@
             %i.fa.fa-times.text-danger
           .content-header-item
             = link_to root_path, class: 'link-effect font-w700' do
-              %span.font-size-xl.text-dual-primary-dark= empresa_actual
+              %span.font-size-xl.text-dual-primary-dark= tienda_actual
         / END Normal Mode
       / Side Navigation
       .content-side.content-side-full
@@ -69,9 +69,9 @@
                 %i.fa.fa-users
                 %span.sidebar-mini-hide Vendedores
             %li
-              = link_to [:empresas], class: ruta_actual(empresas_path) do
-                %i.fa.fa-building
-                %span.sidebar-mini-hide Empresa
+              = link_to [:tiendas], class: ruta_actual(tiendas_path) do
+                %i.fa.fa-shopping-bag
+                %span.sidebar-mini-hide Tienda
       .content-side
         %ul.nav-main
           %li

@@ -2,49 +2,49 @@
   .block-header.bg-primary-dark
     %h3.block-title
       %i.si.si-eye
-      detalles de la empresa #{@empresa}
+      detalles de la tienda #{@tienda}
     .block-options
       .block-options-item
   .block-content
     %table.table.table-hover.table-sm.table-vcenter
       %tr
         %th nombre:
-        %td= @empresa
+        %td= @tienda
         %th telefono:
-        %td= @empresa.telefono
+        %td= @tienda.telefono
         %th RFC:
-        %td= @empresa.rfc
+        %td= @tienda.rfc
       %tr
         %th fecha de creación:
-        %td= l @empresa.created_at, format: :long
+        %td= l @tienda.created_at, format: :long
         %th fecha de edición:
-        %td= l @empresa.updated_at, format: :long
+        %td= l @tienda.updated_at, format: :long
         %th eslogan:
-        %td= @empresa.eslogan
+        %td= @tienda.eslogan
       %tr
         %th calle:
-        %td= @empresa.calle
+        %td= @tienda.calle
         %th número
-        %td= "##{@empresa.numero}"
+        %td= "##{@tienda.numero}"
         %th colonia:
-        %td= @empresa.colonia
+        %td= @tienda.colonia
       %tr
         %th código postal:
-        %td= @empresa.codigo_postal
+        %td= @tienda.codigo_postal
         %th estado:
-        %td= @empresa.estado
+        %td= @tienda.estado
         %th país:
-        %td= @empresa.pais
+        %td= @tienda.pais
       %tr
         %th logotipo:
         %td{ colspan: 5 }
-          - if @empresa.logotipo?
-            = image_tag(@empresa.logotipo.chico.url, class: "img-thumbnail")
+          - if @tienda.logotipo?
+            = image_tag(@tienda.logotipo.chico.url, class: "img-thumbnail")
 
   .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
-    = link_to [:empresas], class: 'btn btn-alt-secondary' do
+    = link_to [:tiendas], class: 'btn btn-alt-secondary' do
       %i.si.si-arrow-left
       regresar
-    = link_to [:edit, @empresa], class: 'btn btn-alt-warning pull-right' do
+    = link_to [:edit, @tienda], class: 'btn btn-alt-warning pull-right' do
       %i.si.si-pencil
       editar

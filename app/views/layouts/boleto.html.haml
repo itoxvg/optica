@@ -42,11 +42,11 @@
   %body
     .contenido.texto-centro
       .linea
-        .fila= image_tag(empresa_actual.logotipo.chico.url)
+        .fila= image_tag(tienda_actual.logotipo.chico.url)
         .fila
-          .col50= empresa_actual.telefono
-          .col50= empresa_actual.rfc
-          %pre= empresa_actual.domicilio
+          .col50= tienda_actual.telefono
+          .col50= tienda_actual.rfc
+          %pre= tienda_actual.domicilio
       = yield
       .texto-min impresión ticket #{l Time.current, format: :long }
       .linea

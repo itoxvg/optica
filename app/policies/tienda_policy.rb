@@ -1,4 +1,4 @@
-class EmpresaPolicy < ApplicationPolicy
+class TiendaPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
