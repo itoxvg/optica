@@ -1,0 +1,34 @@
+%table.table.table-hover.table-sm.table-vcenter
+  %tr
+    %th nombre:
+    %td= empresa
+    %th telefono:
+    %td= empresa.telefono
+    %th RFC:
+    %td= empresa.rfc
+  %tr
+    %th fecha de creación:
+    %td= l empresa.created_at, format: :long
+    %th fecha de edición:
+    %td= l empresa.updated_at, format: :long
+    %th eslogan:
+    %td= empresa.eslogan
+  %tr
+    %th calle:
+    %td= empresa.calle
+    %th número
+    %td= "##{empresa.numero}"
+    %th colonia:
+    %td= empresa.colonia
+  %tr
+    %th código postal:
+    %td= empresa.codigo_postal
+    %th estado:
+    %td= empresa.estado
+    %th país:
+    %td= empresa.pais
+  %tr
+    %th logotipo:
+    %td{ colspan: 5 }
+      - if empresa.logotipo?
+        = image_tag(empresa.logotipo.chico.url, class: "img-thumbnail")

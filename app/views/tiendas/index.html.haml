@@ -9,25 +9,4 @@
           %i.fa.fa-plus
           registrar tienda
   .block-content
-    .table-responsive
-      %table.table.table-striped.table-hover.table-sm.table-vcenter
-        %thead
-          %tr
-            %th nombre
-            %th telefono
-            %th rfc
-            %th.text-center{:style => "width: 100px;"} Acciones
-        %tbody
-          - @tiendas.each do |tienda|
-            %tr
-              %td= tienda.nombre
-              %td= tienda.telefono
-              %td= tienda.rfc
-              %td
-                .btn-group
-                  = link_to tienda, class: 'btn btn-alt-info' do
-                    %i.si.si-eye
-                    detalles
-                  = link_to [:edit, tienda], class: 'btn btn-alt-warning' do
-                    %i.si.si-pencil
-                    editar
+    = render 'empresas/table', empresas: @tiendas
