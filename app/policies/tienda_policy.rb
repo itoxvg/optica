@@ -23,7 +23,7 @@ class TiendaPolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin?
+    usuario.admin?
   end
 
   def update?

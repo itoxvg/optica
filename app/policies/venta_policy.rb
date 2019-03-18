@@ -6,7 +6,7 @@ class VentaPolicy < ApplicationPolicy
   end
 
   def deuda?
-    user.admin? or user.vendedor? and not record.saldada?
+    usuario.admin? or usuario.vendedor? and not registro.saldada?
   end
 
 end
