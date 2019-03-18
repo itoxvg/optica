@@ -7,6 +7,8 @@ class Cliente < ApplicationRecord
   validates :nombre, :corporacion_id, presence: true
   validates :nombre, uniqueness: { case_sensitive: false }
 
+  scope :con_corporacion, -> { includes(:corporacion) }
+
   def self.buscar texto
     where("concat_ws(' ', nombre, telefono, rfc) ILIKE ?", "%#{texto&.squish}%")
   end

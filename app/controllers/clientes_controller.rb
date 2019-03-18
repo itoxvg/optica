@@ -3,7 +3,7 @@ class ClientesController < ApplicationController
 
   def index
     @clientes = Cliente.recientes_primero
-      .buscar(params[:q]).page(params[:page])
+      .con_corporacion.buscar(params[:q]).page(params[:page])
     authorize @clientes
   end
 
