@@ -27,6 +27,7 @@ class ClientesController < ApplicationController
         format.html { redirect_to @cliente, notice: 'El cliente fue creado correctamente' }
         format.json { render :show, status: :created, location: @cliente }
       else
+        format.html { render :new }
         format.json { render json: @cliente.errors, status: :unprocessable_entity }
       end
     end
@@ -49,7 +50,7 @@ class ClientesController < ApplicationController
 
   def cliente_params
     params.require(:cliente).permit(
-      :nombre, :telefono, :rfc,
+      :nombre, :telefono, :rfc, :corporacion_id,
       domicilio_attributes: [:id, :calle, :numero, :colonia, :codigo_postal,
                              :municipio, :estado, :pais]
     )

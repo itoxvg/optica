@@ -21,6 +21,7 @@ es:
         email: "Correo Electrónico"
         telefono: "Teléfono"
         codigo: "Código"
+        corporacion_id: "Corporación"
     # Examples
     # labels:
     #   defaults:

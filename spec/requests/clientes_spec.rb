@@ -3,12 +3,8 @@ require 'rails_helper'
 RSpec.describe "Clientes", type: :request do
 
   let(:admin) { create :administrador }
-  let(:atributos_validos) { attributes_for :cliente }
-  let(:atributos_invalidos) { attributes_for :cliente, nombre: nil }
 
-  before :each do
-    sign_in admin
-  end
+  before { sign_in admin }
 
   describe "GET /clientes" do
     it "debe regresar una respuesta exitosa" do
@@ -49,6 +45,8 @@ RSpec.describe "Clientes", type: :request do
 
   describe "POST /clientes" do
     context "con parámetros válidos" do
+      let(:atributos_validos) { attributes_for :cliente }
+
       it "debe regresa una respuesta exitosa" do
         post clientes_path, params: { cliente: atributos_validos, format: :json }
         expect(response).to have_http_status(:created)
@@ -56,6 +54,8 @@ RSpec.describe "Clientes", type: :request do
     end # context con parámetros válidos
 
     context "con parámetros inválidos" do
+      let(:atributos_invalidos) { attributes_for :cliente, nombre: nil }
+
       it "debe regresar una respuesta exitosa" do
         post clientes_path, params: { cliente: atributos_invalidos, format: :json }
         expect(response).to have_http_status(:unprocessable_entity)

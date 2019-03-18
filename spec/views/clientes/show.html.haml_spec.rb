@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "clientes/show", type: :view do
+
+  let(:corporacion) { create :corporacion }
+
   before(:each) do
     allow(view).to receive(:current_usuario).and_return(usuario)
 
@@ -8,6 +11,7 @@ RSpec.describe "clientes/show", type: :view do
       nombre: "Nombre",
       rfc: "Rfc",
       telefono: "telefono",
+      corporacion_id: corporacion.id
     ))
   end
 
@@ -22,6 +26,7 @@ RSpec.describe "clientes/show", type: :view do
       expect(rendered).to match(/Nombre/)
       expect(rendered).to match(/Rfc/)
       expect(rendered).to match(/telefono/)
+      expect(rendered).to match(corporacion.nombre)
     end
   end # context cuando es administrador
 
@@ -36,6 +41,7 @@ RSpec.describe "clientes/show", type: :view do
       expect(rendered).to match(/Nombre/)
       expect(rendered).to match(/Rfc/)
       expect(rendered).to match(/telefono/)
+      expect(rendered).to match(corporacion.nombre)
     end
   end # context cuando es vendedor
 

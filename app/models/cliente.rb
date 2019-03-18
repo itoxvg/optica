@@ -4,7 +4,7 @@ class Cliente < ApplicationRecord
   belongs_to :corporacion
   has_many :ventas
 
-  validates :nombre, presence: true
+  validates :nombre, :corporacion_id, presence: true
   validates :nombre, uniqueness: { case_sensitive: false }
 
   def self.buscar texto

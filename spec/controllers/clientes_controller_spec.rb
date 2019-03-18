@@ -10,9 +10,7 @@ RSpec.describe ClientesController, type: :controller do
   end
   let(:invalid_attributes) { attributes_for :cliente, nombre: nil }
 
-  before :each do
-    sign_in admin
-  end
+  before { sign_in admin }
 
   describe "GET #index" do
     it "debe regresar una respuesta exitosa" do
