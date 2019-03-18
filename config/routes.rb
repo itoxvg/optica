@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       get :ventas, on: :member
     end
     resources :clientes, only: :index
+    resources :corporaciones, only: :index
     resources :productos, only: :index
     resources :ventas, only: :show
   end
