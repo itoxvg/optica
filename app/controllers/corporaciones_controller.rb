@@ -2,7 +2,7 @@ class CorporacionesController < ApplicationController
   before_action :set_corporacion, only: [:show, :edit, :update, :destroy]
 
   def index
-    @corporaciones = Corporacion.recientes_primero
+    @corporaciones = Corporacion.recientes_primero.page(params[:page])
     authorize @corporaciones
   end
 

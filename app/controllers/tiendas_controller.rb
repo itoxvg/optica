@@ -2,7 +2,7 @@ class TiendasController < ApplicationController
   before_action :set_tienda, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tiendas = Tienda.recientes_primero
+    @tiendas = Tienda.recientes_primero.page(params[:page])
     authorize @tiendas
   end
 
