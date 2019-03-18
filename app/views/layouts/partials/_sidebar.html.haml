@@ -52,6 +52,10 @@
               %i.fa.fa-users
               %span.sidebar-mini-hide Clientes
           %li
+            = link_to [:corporaciones], class: ruta_actual(corporaciones_path) do
+              %i.fa.fa-list
+              %span.sidebar-mini-hide Corporaciónes
+          %li
             = link_to [:marcas], class: ruta_actual(marcas_path) do
               %i.fa.fa-asterisk
               %span.sidebar-mini-hide Marcas

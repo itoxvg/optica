@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :administradores, except: [:destroy]
   resources :armazones
   resources :clientes, except: [:destroy]
+  resources :corporaciones
   resources :lentes
   resources :marcas
   resources :micas

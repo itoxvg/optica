@@ -1,0 +1,2 @@
+class Corporacion < Empresa
+end

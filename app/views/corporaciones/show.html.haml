@@ -1,0 +1,50 @@
+.block.block-themed
+  .block-header.bg-primary-dark
+    %h3.block-title
+      %i.si.si-eye
+      detalles de la corporación #{@corporacion}
+    .block-options
+      .block-options-item
+  .block-content
+    %table.table.table-hover.table-sm.table-vcenter
+      %tr
+        %th nombre:
+        %td= @corporacion
+        %th telefono:
+        %td= @corporacion.telefono
+        %th RFC:
+        %td= @corporacion.rfc
+      %tr
+        %th fecha de creación:
+        %td= l @corporacion.created_at, format: :long
+        %th fecha de edición:
+        %td= l @corporacion.updated_at, format: :long
+        %th eslogan:
+        %td= @corporacion.eslogan
+      %tr
+        %th calle:
+        %td= @corporacion.calle
+        %th número
+        %td= "##{@corporacion.numero}"
+        %th colonia:
+        %td= @corporacion.colonia
+      %tr
+        %th código postal:
+        %td= @corporacion.codigo_postal
+        %th estado:
+        %td= @corporacion.estado
+        %th país:
+        %td= @corporacion.pais
+      %tr
+        %th logotipo:
+        %td{ colspan: 5 }
+          - if @corporacion.logotipo?
+            = image_tag(@corporacion.logotipo.chico.url, class: "img-thumbnail")
+
+  .block-content.block-content-full.block-content-sm.bg-body-light.font-size-sm
+    = link_to [:corporaciones], class: 'btn btn-alt-secondary' do
+      %i.si.si-arrow-left
+      regresar
+    = link_to [:edit, @corporacion], class: 'btn btn-alt-warning pull-right' do
+      %i.si.si-pencil
+      editar
