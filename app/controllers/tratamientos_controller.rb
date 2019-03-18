@@ -2,7 +2,7 @@ class TratamientosController < ApplicationController
   before_action :set_tratamiento, only: [:show, :edit, :update, :destroy]
 
   def index
-    @tratamientos = Tratamiento.recientes_primero
+    @tratamientos = Tratamiento.recientes_primero.con_marca
       .buscar(params[:q]).page(params[:page])
   end
 

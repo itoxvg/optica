@@ -11,6 +11,8 @@ class Producto < ApplicationRecord
   validates :precio_venta, numericality: { greater_than: 0 }
   validates :codigo, uniqueness: { case_sensitive: false }
 
+  scope :con_marca, -> { includes(:marca) }
+
   def self.buscar texto
     where("concat_ws(' ', codigo, nombre, tipo, type, existencia) ILIKE ?", "%#{texto&.squish}%")
   end

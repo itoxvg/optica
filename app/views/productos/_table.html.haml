@@ -3,21 +3,21 @@
     %thead
       %tr
         %th código
-        %th nombre
-        %th estado
+        %th marca
+        %th precio
         %th existencias
         %th tipo
-        %th actualizado el
+        %th estado
         %th.text-center{:style => "width: 100px;"} Acciones
     %tbody
       - productos.each do |producto|
         %tr
           %td= producto.codigo
-          %td= producto.nombre
-          %td= estado_de_publicacion producto
+          %td= producto.marca
+          %td= number_to_currency producto.precio_venta
           %td= producto.existencia
           %td= producto.tipo
-          %td= l producto.updated_at, format: :short
+          %td= estado_de_publicacion producto
           %td
             .btn-group
               = link_to producto, class: 'btn btn-alt-info' do
