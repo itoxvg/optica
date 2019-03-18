@@ -198,6 +198,7 @@
             </div>
             <div class="block-content">
               <div class="row">
+
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="cliente_nombre">
@@ -209,27 +210,43 @@
                     <div class="invalid-feedback" v-if="errores.nombre">{{ errores.nombre[0] }}</div>
                   </div>
                 </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label for="cliente_telefono">
-                      telefono
+
+                <div class="col-md-6">
+                  <div class="form-group" :class="errores.corporacion_id ? 'is-invalid' : ''">
+                    <label for="cliente_corporacion">
+                      corporación <span class="text-danger">*</span>
                     </label>
+                    <select v-model="cliente.corporacion_id" class="form-control"
+                      id="cliente_corporacion">
+                      <option v-for="c in corporaciones" :value="c.id" :key="c.id">
+                        {{ c.nombre }}
+                      </option>
+                    </select>
+                    <div class="invalid-feedback" v-if="errores.corporacion_id">
+                      {{ errores.corporacion_id[0] }}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="cliente_telefono"> teléfono </label>
                     <input type="text" v-model="cliente.telefono"
                       id="cliente_telefono"
                       class="form-control" autocomplete="off"/>
                   </div>
                 </div>
-                <div class="col-md-3">
+
+                <div class="col-md-6">
                   <div class="form-group">
-                    <label for="cliente_rfc">
-                      RFC
-                    </label>
+                    <label for="cliente_rfc"> RFC </label>
                     <input type="text" v-model="cliente.rfc"
                       id="cliente_rfc"
                       class="form-control" autocomplete="off"/>
                   </div>
                 </div>
               </div>
+
               <div class="row">
                 <div class="col-md-9">
                   <div class="form-group">
@@ -238,6 +255,7 @@
                       id="cliente_calle" class="form-control" />
                   </div>
                 </div>
+
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="cliente_numero"> número </label>
@@ -245,6 +263,7 @@
                       id="cliente_numero" class="form-control" />
                   </div>
                 </div>
+
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="cliente_colonia"> colonia </label>
@@ -252,6 +271,7 @@
                       id="cliente_colonia" class="form-control" />
                   </div>
                 </div>
+
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="cliente_municipio"> municipio </label>
@@ -259,6 +279,7 @@
                       id="cliente_municipio" class="form-control" />
                   </div>
                 </div>
+
                 <div class="col-md-3">
                   <div class="form-group">
                     <label for="cliente_codigo_postal"> código postal </label>
@@ -266,6 +287,7 @@
                       id="cliente_codigo_postal" class="form-control" />
                   </div>
                 </div>
+
               </div>
             </div>
           </div>
@@ -309,6 +331,7 @@ export default {
         '04 - Tarjeta de crédito',
         '28 - Tarjeta de débito'
       ],
+      corporaciones: [],
       errores: {}
     }
   },
@@ -322,6 +345,7 @@ export default {
       this.calcularSubtotal()
     })
 
+    this.obtenerCorporaciones()
     this.buscadorClientes()
     window.$('#buscar-clientes').on('select2:select', (event) => {
       this.agregarCliente()
@@ -437,6 +461,12 @@ export default {
       })
     },
 
+    obtenerCorporaciones() {
+      this.$http.get('/api/corporaciones')
+        .then(response => this.corporaciones = response.data.items)
+        .catch(err => console.log(err))
+    },
+
     buscadorClientes() {
       window.$('#buscar-clientes').select2({
         placeholder: 'Buscar cliente',
@@ -464,7 +494,7 @@ export default {
 
               return {
                 id: JSON.stringify(item),
-                text: `${item.nombre} ${rfc}`
+                text: `${item.nombre} | ${item.corporacion} ${rfc}`
               }
             })
 
