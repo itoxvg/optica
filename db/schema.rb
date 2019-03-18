@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_11_152025) do
+ActiveRecord::Schema.define(version: 2019_03_18_184952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(version: 2019_03_11_152025) do
     t.string "rfc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "corporacion_id"
+    t.index ["corporacion_id"], name: "index_clientes_on_corporacion_id"
   end
 
   create_table "domicilios", force: :cascade do |t|
@@ -140,6 +142,7 @@ ActiveRecord::Schema.define(version: 2019_03_11_152025) do
     t.index ["usuario_id"], name: "index_ventas_on_usuario_id"
   end
 
+  add_foreign_key "clientes", "empresas", column: "corporacion_id"
   add_foreign_key "pagos", "ventas"
   add_foreign_key "productos", "marcas"
   add_foreign_key "productos", "usuarios"
