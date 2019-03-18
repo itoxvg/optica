@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Cliente, type: :model do
 
+  it { should belong_to :corporacion }
   it { should have_many :ventas }
   it { should have_one(:domicilio).dependent(:destroy) }
 
